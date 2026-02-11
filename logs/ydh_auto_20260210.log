@@ -1,0 +1,2326 @@
+2026-02-10 16:20:40,362 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 16:20:42,340 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 16:20:43,365 - driver_utils - INFO - 启动Chrome（调试端口9222），等待5秒...
+2026-02-10 16:20:48,837 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 16:20:48,874 - ydh_page - INFO - 访问目标页面：http://yzwebpre.mamayz.com:8080/operation/newInStage
+2026-02-10 16:20:56,449 - ydh_page - INFO - 输入货架号
+2026-02-10 16:21:07,060 - run - ERROR - 程序执行失败：Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 73, in main
+    ydh_page.input_shelf_num()
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 50, in input_shelf_num
+    shelf_elem = self.wait_element_clickable(self.SHELF_NUM_INPUT)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\page\base_page.py", line 31, in wait_element_clickable
+    return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 16:21:07,336 - base_page - INFO - 错误截图已保存：screenshots\main_error.png
+2026-02-10 16:21:07,337 - run - INFO - 断开Chrome驱动连接
+2026-02-10 16:21:09,383 - run - INFO - ========== 执行结束 ==========
+2026-02-10 16:23:19,643 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 16:23:19,953 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 16:23:20,618 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 16:23:20,629 - ydh_page - INFO - 访问目标页面：http://yzwebpre.mamayz.com:8080/operation/newInStage
+2026-02-10 16:23:30,555 - ydh_page - INFO - 输入货架号
+2026-02-10 16:23:31,201 - ydh_page - INFO - 货架号输入完成
+2026-02-10 16:23:31,201 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 16:23:31,203 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14213521892）
+2026-02-10 16:23:31,259 - base_page - INFO - 随机睡眠 1.30 秒
+2026-02-10 16:23:32,628 - base_page - INFO - 随机睡眠 0.86 秒
+2026-02-10 16:23:33,567 - base_page - INFO - 随机睡眠 1.26 秒
+2026-02-10 16:23:34,830 - ydh_page - INFO - 运单号输入完成
+2026-02-10 16:58:51,364 - run - INFO - 断开Chrome驱动连接
+2026-02-10 16:58:51,366 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/30c0f70f1442207d8a861fd5a62f73fb
+2026-02-10 17:44:07,683 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 17:44:07,855 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 17:44:08,670 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 17:44:08,907 - ydh_page - INFO - 访问目标页面：http://yzwebpre.mamayz.com:8080/operation/newInStage
+2026-02-10 17:44:09,252 - run - ERROR - 程序执行失败：Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=144.0.7559.133)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70196a071
+	0x7ff701a1dcc6
+	0x7ff701a3f67d
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 72, in main
+    ydh_page.open_ydh_page()
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 49, in open_ydh_page
+    self.wait_element_presence(self.FORM_TAG)
+  File "D:\pythonProject\ydh_auto\page\base_page.py", line 35, in wait_element_presence
+    return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 112, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 92, in _predicate
+    return driver.find_element(*locator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=144.0.7559.133)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70196a071
+	0x7ff701a1dcc6
+	0x7ff701a3f67d
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 17:44:09,259 - run - INFO - 断开Chrome驱动连接
+2026-02-10 17:44:11,282 - run - INFO - ========== 执行结束 ==========
+2026-02-10 17:44:31,971 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 17:44:32,263 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 17:44:33,037 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 17:44:33,056 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 17:44:33,057 - ydh_page - INFO - 输入货架号
+2026-02-10 17:44:33,604 - ydh_page - INFO - 货架号输入完成
+2026-02-10 17:44:33,605 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 17:44:33,606 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14232826230）
+2026-02-10 17:44:34,402 - ydh_page - INFO - 运单号输入完成
+2026-02-10 17:44:34,402 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 17:44:34,443 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 17:44:34,484 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 17:44:34,484 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 17:44:37,360 - base_page - INFO - 随机睡眠 0.95 秒
+2026-02-10 17:44:38,366 - base_page - INFO - 随机睡眠 0.76 秒
+2026-02-10 17:44:40,165 - ydh_page - INFO - 手机号输入完成
+2026-02-10 17:44:40,666 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 17:44:40,666 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14229281444）
+2026-02-10 17:44:41,460 - ydh_page - INFO - 运单号输入完成
+2026-02-10 17:44:41,461 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 17:44:41,489 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 17:44:41,509 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 17:44:41,509 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 17:44:45,421 - base_page - INFO - 随机睡眠 0.70 秒
+2026-02-10 17:44:47,116 - base_page - INFO - 随机睡眠 1.39 秒
+2026-02-10 17:44:51,596 - run - INFO - 断开Chrome驱动连接
+2026-02-10 17:44:51,599 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/5eaeaccda01b3cc8c985d5a727115b31
+2026-02-10 20:32:59,079 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 20:32:59,273 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 20:33:00,125 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 20:33:00,151 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 20:33:00,152 - ydh_page - INFO - 输入货架号
+2026-02-10 20:33:00,739 - ydh_page - INFO - 货架号输入完成
+2026-02-10 20:33:00,739 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 20:33:00,739 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14225141688）
+2026-02-10 20:33:01,528 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:34:12,195 - ydh_page - INFO - div[3]-div[10]范围内未找到可点击的弹窗按钮，跳过点击
+2026-02-10 20:34:12,257 - base_page - INFO - 随机睡眠 1.48 秒
+2026-02-10 20:34:13,819 - base_page - INFO - 随机睡眠 1.12 秒
+2026-02-10 20:34:15,893 - ydh_page - INFO - 手机号输入完成
+2026-02-10 20:34:16,358 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 20:34:16,358 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 20:34:16,358 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14272966458）
+2026-02-10 20:34:17,065 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:34:45,593 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 20:34:45,770 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 20:34:46,461 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 20:34:46,481 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 20:34:46,481 - ydh_page - INFO - 输入货架号
+2026-02-10 20:34:47,039 - ydh_page - INFO - 货架号输入完成
+2026-02-10 20:34:47,039 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 20:34:47,040 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14277243294）
+2026-02-10 20:34:47,875 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:34:47,875 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 20:34:47,938 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 20:34:47,962 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 20:34:53,008 - ydh_page - INFO - 未找到第3个弹窗按钮，继续检查下一个
+2026-02-10 20:34:58,037 - ydh_page - INFO - 未找到第4个弹窗按钮，继续检查下一个
+2026-02-10 20:35:03,074 - ydh_page - INFO - 未找到第5个弹窗按钮，继续检查下一个
+2026-02-10 20:35:08,151 - ydh_page - INFO - 未找到第6个弹窗按钮，继续检查下一个
+2026-02-10 20:35:13,221 - ydh_page - INFO - 未找到第7个弹窗按钮，继续检查下一个
+2026-02-10 20:35:18,252 - ydh_page - INFO - 未找到第8个弹窗按钮，继续检查下一个
+2026-02-10 20:35:23,265 - ydh_page - INFO - 未找到第9个弹窗按钮，继续检查下一个
+2026-02-10 20:35:28,303 - ydh_page - INFO - 未找到第10个弹窗按钮，继续检查下一个
+2026-02-10 20:35:33,362 - ydh_page - INFO - 未找到第11个弹窗按钮，继续检查下一个
+2026-02-10 20:35:38,377 - ydh_page - INFO - 未找到第12个弹窗按钮，继续检查下一个
+2026-02-10 20:35:43,433 - ydh_page - INFO - 未找到第13个弹窗按钮，继续检查下一个
+2026-02-10 20:35:48,444 - ydh_page - INFO - 未找到第14个弹窗按钮，继续检查下一个
+2026-02-10 20:35:53,485 - ydh_page - INFO - 未找到第15个弹窗按钮，继续检查下一个
+2026-02-10 20:35:58,496 - ydh_page - INFO - 未找到第16个弹窗按钮，继续检查下一个
+2026-02-10 20:35:58,496 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 20:35:58,555 - base_page - INFO - 随机睡眠 1.18 秒
+2026-02-10 20:35:59,820 - base_page - INFO - 随机睡眠 1.29 秒
+2026-02-10 20:35:59,827 - run - INFO - 断开Chrome驱动连接
+2026-02-10 20:35:59,833 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/043b05ea3bdd134b581b09b6405523e8
+2026-02-10 20:51:40,215 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 20:51:40,387 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 20:51:41,094 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 20:51:41,113 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 20:51:41,113 - ydh_page - INFO - 输入货架号
+2026-02-10 20:51:41,714 - ydh_page - INFO - 货架号输入完成
+2026-02-10 20:51:41,714 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 20:51:41,714 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14206378314）
+2026-02-10 20:51:42,534 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:51:42,534 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 20:51:42,577 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 20:51:42,608 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 20:51:47,623 - ydh_page - INFO - 未找到第3个弹窗按钮，继续检查下一个
+2026-02-10 20:51:52,649 - ydh_page - INFO - 未找到第4个弹窗按钮，继续检查下一个
+2026-02-10 20:51:52,649 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 20:51:52,688 - base_page - INFO - 随机睡眠 1.04 秒
+2026-02-10 20:51:53,376 - run - INFO - 断开Chrome驱动连接
+2026-02-10 20:51:53,378 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/d8a802d305269b2216c8aeae4a410fca
+2026-02-10 20:51:57,472 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=62957): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。")': /session/d8a802d305269b2216c8aeae4a410fca
+2026-02-10 20:52:01,582 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=62957): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。")': /session/d8a802d305269b2216c8aeae4a410fca
+2026-02-10 20:52:05,699 - run - INFO - ========== 执行结束 ==========
+2026-02-10 20:59:21,062 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 20:59:21,234 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 20:59:21,901 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 20:59:21,912 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 20:59:21,912 - ydh_page - INFO - 输入货架号
+2026-02-10 20:59:22,412 - ydh_page - INFO - 货架号输入完成
+2026-02-10 20:59:22,413 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 20:59:22,413 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14214235918）
+2026-02-10 20:59:23,231 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:59:33,438 - base_page - INFO - 随机睡眠 0.61 秒
+2026-02-10 20:59:34,074 - base_page - INFO - 随机睡眠 1.30 秒
+2026-02-10 20:59:36,445 - ydh_page - INFO - 手机号输入完成
+2026-02-10 20:59:36,918 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 20:59:36,919 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 20:59:36,920 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14298596601）
+2026-02-10 20:59:37,649 - ydh_page - INFO - 运单号输入完成
+2026-02-10 20:59:43,850 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:00:56,295 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:00:56,464 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:00:57,145 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:00:57,160 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:00:57,160 - ydh_page - INFO - 输入货架号
+2026-02-10 21:00:57,724 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:00:57,724 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:00:57,724 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14263427033）
+2026-02-10 21:00:58,507 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:00:58,507 - ydh_page - INFO - 弹窗判断
+2026-02-10 21:01:08,567 - ydh_page - INFO - 弹窗判断玩成
+2026-02-10 21:01:08,659 - base_page - INFO - 随机睡眠 0.56 秒
+2026-02-10 21:01:09,312 - base_page - INFO - 随机睡眠 0.72 秒
+2026-02-10 21:01:11,051 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:01:11,530 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:01:11,530 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:01:11,530 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14231514278）
+2026-02-10 21:01:12,332 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:01:12,332 - ydh_page - INFO - 弹窗判断
+2026-02-10 21:01:22,490 - ydh_page - INFO - 弹窗判断玩成
+2026-02-10 21:01:22,528 - base_page - INFO - 随机睡眠 0.84 秒
+2026-02-10 21:01:23,404 - base_page - INFO - 随机睡眠 0.75 秒
+2026-02-10 21:01:25,117 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:01:25,549 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:01:25,549 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:01:25,549 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14207802188）
+2026-02-10 21:01:26,249 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:01:26,249 - ydh_page - INFO - 弹窗判断
+2026-02-10 21:01:29,264 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:05:23,123 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:05:23,312 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:05:24,065 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:05:24,081 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:05:24,081 - ydh_page - INFO - 输入货架号
+2026-02-10 21:05:24,561 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:05:24,561 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:05:24,562 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14285470258）
+2026-02-10 21:05:25,304 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:05:25,304 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:05:25,326 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:05:25,351 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:05:30,374 - ydh_page - INFO - 未找到第3个弹窗按钮，继续检查下一个
+2026-02-10 21:05:30,374 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:05:30,414 - base_page - INFO - 随机睡眠 1.31 秒
+2026-02-10 21:05:31,781 - base_page - INFO - 随机睡眠 0.85 秒
+2026-02-10 21:05:33,552 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:05:33,694 - base_page - INFO - 随机睡眠 1.44 秒
+2026-02-10 21:05:35,141 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:05:35,315 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:05:35,316 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/f7f1b46f31a04511f422cad75a8e02c5
+2026-02-10 21:08:03,844 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:08:04,032 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:08:04,754 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:08:04,770 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:08:04,770 - ydh_page - INFO - 输入货架号
+2026-02-10 21:08:05,391 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:08:05,391 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:08:05,393 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14257379888）
+2026-02-10 21:08:06,200 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:08:06,200 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:08:06,232 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:08:06,266 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:08:11,286 - ydh_page - WARNING - 检查第3个弹窗按钮时出现异常：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[4]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+，继续检查下一个
+2026-02-10 21:08:11,286 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:08:11,325 - base_page - INFO - 随机睡眠 0.96 秒
+2026-02-10 21:08:12,346 - base_page - INFO - 随机睡眠 1.22 秒
+2026-02-10 21:08:14,569 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:08:14,696 - base_page - INFO - 随机睡眠 1.04 秒
+2026-02-10 21:08:15,734 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:08:16,235 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:08:16,235 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14238558758）
+2026-02-10 21:08:16,969 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:08:16,969 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:08:16,994 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:08:17,012 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:08:20,440 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:08:24,532 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54425): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。")': /session/6a4cfce72d6eea40fe646e823b931007
+2026-02-10 21:08:28,649 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54425): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。")': /session/6a4cfce72d6eea40fe646e823b931007
+2026-02-10 21:08:32,768 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54425): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。")': /session/6a4cfce72d6eea40fe646e823b931007
+2026-02-10 21:08:36,889 - run - INFO - ========== 执行结束 ==========
+2026-02-10 21:12:24,563 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:12:24,758 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:12:25,485 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:12:25,498 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:12:25,498 - ydh_page - INFO - 输入货架号
+2026-02-10 21:12:25,994 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:12:25,994 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:12:25,994 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14213242900）
+2026-02-10 21:12:26,817 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:12:26,817 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:12:26,846 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:12:26,869 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:12:26,869 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:12:26,908 - base_page - INFO - 随机睡眠 0.83 秒
+2026-02-10 21:12:27,794 - base_page - INFO - 随机睡眠 0.84 秒
+2026-02-10 21:12:29,671 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:12:29,788 - base_page - INFO - 随机睡眠 0.63 秒
+2026-02-10 21:12:30,416 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:12:30,917 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:12:30,917 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14202748629）
+2026-02-10 21:12:31,754 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:12:31,754 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:12:31,785 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:12:31,809 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:12:31,809 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:12:31,870 - base_page - INFO - 随机睡眠 1.09 秒
+2026-02-10 21:12:33,032 - base_page - INFO - 随机睡眠 1.01 秒
+2026-02-10 21:12:34,951 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:12:34,996 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:13:34,324 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:13:34,561 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:13:35,295 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:13:35,312 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:13:35,312 - ydh_page - INFO - 输入货架号
+2026-02-10 21:13:35,776 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:13:35,776 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:13:35,776 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14256863720）
+2026-02-10 21:13:36,562 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:13:36,562 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:13:36,583 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:36,601 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:36,601 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:13:36,642 - base_page - INFO - 随机睡眠 1.42 秒
+2026-02-10 21:13:38,118 - base_page - INFO - 随机睡眠 0.93 秒
+2026-02-10 21:13:39,960 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:13:40,062 - base_page - INFO - 随机睡眠 1.33 秒
+2026-02-10 21:13:41,393 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:13:41,893 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:13:41,894 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14210402297）
+2026-02-10 21:13:42,683 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:13:42,683 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:13:42,718 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:42,742 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:42,742 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:13:42,782 - base_page - INFO - 随机睡眠 0.62 秒
+2026-02-10 21:13:43,465 - base_page - INFO - 随机睡眠 1.44 秒
+2026-02-10 21:13:45,967 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:13:46,077 - base_page - INFO - 随机睡眠 0.99 秒
+2026-02-10 21:13:47,073 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:13:47,574 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:13:47,574 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14211486960）
+2026-02-10 21:13:48,408 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:13:48,408 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:13:48,439 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:48,454 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:48,454 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:13:48,483 - base_page - INFO - 随机睡眠 0.87 秒
+2026-02-10 21:13:49,413 - base_page - INFO - 随机睡眠 1.15 秒
+2026-02-10 21:13:51,509 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:13:51,625 - base_page - INFO - 随机睡眠 0.75 秒
+2026-02-10 21:13:52,373 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:13:52,874 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 21:13:52,874 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14264811988）
+2026-02-10 21:13:53,711 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:13:53,711 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:13:53,743 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:53,768 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:13:53,769 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:13:53,805 - base_page - INFO - 随机睡眠 1.05 秒
+2026-02-10 21:13:54,164 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:13:54,165 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/a0ab942b378475b2d5bfcaf971c84134
+2026-02-10 21:14:13,266 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:14:13,471 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:14:14,206 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:14:14,223 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:14:14,223 - ydh_page - INFO - 输入货架号
+2026-02-10 21:14:14,762 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:14:14,763 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:14:14,763 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14238798299）
+2026-02-10 21:14:15,698 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:14:15,698 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:14:15,731 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:15,752 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:15,753 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:14:15,795 - base_page - INFO - 随机睡眠 1.00 秒
+2026-02-10 21:14:16,837 - base_page - INFO - 随机睡眠 1.35 秒
+2026-02-10 21:14:19,181 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:14:19,327 - base_page - INFO - 随机睡眠 0.59 秒
+2026-02-10 21:14:19,919 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:14:20,419 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:14:20,419 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14209289929）
+2026-02-10 21:14:21,195 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:14:21,195 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:14:21,237 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:21,278 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:21,279 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:14:21,337 - base_page - INFO - 随机睡眠 0.52 秒
+2026-02-10 21:14:21,930 - base_page - INFO - 随机睡眠 1.48 秒
+2026-02-10 21:14:22,319 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:14:22,325 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/bc542ebed0aaeaa567dff725922c8a0b
+2026-02-10 21:14:52,166 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:14:52,352 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:14:53,102 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:14:53,116 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:14:53,116 - ydh_page - INFO - 输入货架号
+2026-02-10 21:14:53,631 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:14:53,631 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:14:53,631 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14223368329）
+2026-02-10 21:14:54,502 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:14:54,502 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:14:54,538 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:54,569 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:14:58,258 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:22:15,819 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:22:15,998 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:22:16,729 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:22:16,745 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:22:16,745 - ydh_page - INFO - 输入货架号
+2026-02-10 21:22:17,069 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:22:17,069 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:22:17,069 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14245244273）
+2026-02-10 21:22:17,627 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:22:17,627 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:22:17,648 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:17,673 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:17,676 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:22:17,719 - base_page - INFO - 随机睡眠 1.16 秒
+2026-02-10 21:22:18,904 - base_page - INFO - 随机睡眠 1.14 秒
+2026-02-10 21:22:20,839 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:22:20,961 - base_page - INFO - 随机睡眠 0.75 秒
+2026-02-10 21:22:21,709 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:22:22,211 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:22:22,211 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14201871832）
+2026-02-10 21:22:22,806 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:22:22,806 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:22:22,836 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:22,859 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:22,863 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:22:22,907 - base_page - INFO - 随机睡眠 1.07 秒
+2026-02-10 21:22:24,021 - base_page - INFO - 随机睡眠 0.92 秒
+2026-02-10 21:22:25,721 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:22:25,829 - base_page - INFO - 随机睡眠 0.55 秒
+2026-02-10 21:22:26,382 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:22:26,883 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:22:26,883 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14282422143）
+2026-02-10 21:22:27,465 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:22:27,465 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:22:27,485 - ydh_page - INFO - 第1个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:27,531 - ydh_page - INFO - 第2个弹窗按钮存在但不可操作，继续检查下一个
+2026-02-10 21:22:27,531 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:22:27,576 - base_page - INFO - 随机睡眠 0.52 秒
+2026-02-10 21:22:28,175 - base_page - INFO - 随机睡眠 1.41 秒
+2026-02-10 21:22:29,601 - ydh_page - ERROR - 处理运单号YT111111113失败，执行页面刷新：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 107, in process_single_ydh
+    mobile_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:22:29,885 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111113.png
+2026-02-10 21:22:29,885 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:22:34,859 - run - ERROR - 程序执行失败：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 78, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 107, in process_single_ydh
+    mobile_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:22:35,132 - base_page - INFO - 错误截图已保存：screenshots\main_error.png
+2026-02-10 21:22:35,133 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:22:37,157 - run - INFO - ========== 执行结束 ==========
+2026-02-10 21:26:06,321 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:26:06,492 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:26:07,142 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:26:07,163 - ydh_page - INFO - 访问目标页面：http://yzwebpre.mamayz.com:8080/operation/newInStage
+2026-02-10 21:26:10,336 - ydh_page - INFO - 输入货架号
+2026-02-10 21:26:10,934 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:26:10,934 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:26:10,934 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14296237463）
+2026-02-10 21:26:11,586 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:26:11,586 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:26:16,640 - ydh_page - ERROR - 处理运单号YT111111111失败，执行页面刷新：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:16,839 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111111.png
+2026-02-10 21:26:16,839 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:26:18,896 - run - ERROR - 处理运单号 YT111111111 时发生异常：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:18,903 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:26:18,903 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14244401571）
+2026-02-10 21:26:19,947 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:26:19,947 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:26:25,000 - ydh_page - ERROR - 处理运单号YT111111112失败，执行页面刷新：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:25,421 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111112.png
+2026-02-10 21:26:25,422 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:26:30,204 - run - ERROR - 处理运单号 YT111111112 时发生异常：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:30,208 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:26:30,208 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14223733702）
+2026-02-10 21:26:33,663 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:26:33,663 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:26:38,681 - ydh_page - ERROR - 处理运单号YT111111113失败，执行页面刷新：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:39,385 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111113.png
+2026-02-10 21:26:39,386 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:26:41,453 - run - ERROR - 处理运单号 YT111111113 时发生异常：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:41,455 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 21:26:41,455 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14271228553）
+2026-02-10 21:26:42,517 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:26:42,517 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:26:47,531 - ydh_page - ERROR - 处理运单号YT111111114失败，执行页面刷新：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:48,155 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111114.png
+2026-02-10 21:26:48,155 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:26:52,859 - run - ERROR - 处理运单号 YT111111114 时发生异常：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:52,861 - run - INFO - 
+========== 处理第 5/79 个运单号 ==========
+2026-02-10 21:26:52,861 - ydh_page - INFO - 处理运单号：YT111111115（手机号：14270921281）
+2026-02-10 21:26:53,404 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:26:53,404 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:26:58,431 - ydh_page - ERROR - 处理运单号YT111111115失败，执行页面刷新：Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 89, in process_single_ydh
+    popup_btn = self.driver.find_element(*btn_locator)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 802, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[3]/div/div[3]/button[2]"}
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:26:59,181 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111115.png
+2026-02-10 21:26:59,182 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:26:59,708 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:27:41,033 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:27:41,259 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:27:41,929 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:27:41,951 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:27:41,951 - ydh_page - INFO - 输入货架号
+2026-02-10 21:27:42,464 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:27:42,464 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:27:42,465 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14242222222）
+2026-02-10 21:27:43,347 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:27:43,347 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:27:48,380 - ydh_page - INFO - 第1个弹窗按钮未找到/无法交互，继续检查下一个
+2026-02-10 21:27:53,433 - ydh_page - INFO - 第2个弹窗按钮未找到/无法交互，继续检查下一个
+2026-02-10 21:27:53,433 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:27:53,495 - base_page - INFO - 随机睡眠 1.25 秒
+2026-02-10 21:27:54,801 - base_page - INFO - 随机睡眠 0.63 秒
+2026-02-10 21:27:56,607 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:27:56,780 - base_page - INFO - 随机睡眠 1.07 秒
+2026-02-10 21:27:57,846 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:27:58,347 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:27:58,347 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14201122129）
+2026-02-10 21:27:59,190 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:27:59,190 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:28:04,235 - ydh_page - INFO - 第1个弹窗按钮未找到/无法交互，继续检查下一个
+2026-02-10 21:28:06,359 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:29:11,625 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:29:11,815 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:29:12,509 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:29:12,529 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:29:12,529 - ydh_page - INFO - 输入货架号
+2026-02-10 21:29:13,036 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:29:13,037 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:29:13,037 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14264384616）
+2026-02-10 21:29:13,933 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:29:13,933 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:29:18,993 - ydh_page - INFO - 未找到第1个弹窗按钮，继续检查下一个
+2026-02-10 21:29:24,051 - ydh_page - INFO - 未找到第2个弹窗按钮，继续检查下一个
+2026-02-10 21:29:24,051 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:29:24,120 - base_page - INFO - 随机睡眠 1.26 秒
+2026-02-10 21:29:25,420 - base_page - INFO - 随机睡眠 1.37 秒
+2026-02-10 21:29:27,671 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:29:27,857 - base_page - INFO - 随机睡眠 0.91 秒
+2026-02-10 21:29:28,771 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:29:29,272 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:29:29,272 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14254419663）
+2026-02-10 21:29:30,104 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:29:30,104 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:29:35,159 - ydh_page - INFO - 未找到第1个弹窗按钮，继续检查下一个
+2026-02-10 21:29:40,181 - ydh_page - INFO - 未找到第2个弹窗按钮，继续检查下一个
+2026-02-10 21:29:40,181 - ydh_page - INFO - 所有弹窗按钮都未找到/不可用，跳过点击
+2026-02-10 21:29:40,210 - base_page - INFO - 随机睡眠 1.04 秒
+2026-02-10 21:29:41,310 - base_page - INFO - 随机睡眠 1.50 秒
+2026-02-10 21:29:43,853 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:29:43,996 - base_page - INFO - 随机睡眠 0.93 秒
+2026-02-10 21:29:44,926 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:29:45,426 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:29:45,426 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14246881403）
+2026-02-10 21:29:46,315 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:29:46,315 - ydh_page - INFO - 检查弹窗确认按钮（或逻辑）
+2026-02-10 21:29:51,324 - ydh_page - INFO - 未找到第1个弹窗按钮，继续检查下一个
+2026-02-10 21:29:55,797 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:30:19,061 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:30:19,266 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:30:20,022 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:30:20,039 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:30:20,039 - ydh_page - INFO - 输入货架号
+2026-02-10 21:30:20,633 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:30:20,634 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:30:20,634 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14275745203）
+2026-02-10 21:30:21,542 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:21,609 - base_page - INFO - 随机睡眠 0.99 秒
+2026-02-10 21:30:22,662 - base_page - INFO - 随机睡眠 1.09 秒
+2026-02-10 21:30:24,777 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:30:24,919 - base_page - INFO - 随机睡眠 1.37 秒
+2026-02-10 21:30:26,292 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:30:26,793 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:30:26,793 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14279876548）
+2026-02-10 21:30:27,582 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:27,654 - base_page - INFO - 随机睡眠 1.45 秒
+2026-02-10 21:30:29,144 - base_page - INFO - 随机睡眠 1.06 秒
+2026-02-10 21:30:30,005 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:30:30,008 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/c558d61667ce0d30faf49a6929fdbe85
+2026-02-10 21:30:41,250 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:30:41,436 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:30:42,118 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:30:42,123 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:30:42,123 - ydh_page - INFO - 输入货架号
+2026-02-10 21:30:42,438 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:30:42,438 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:30:42,438 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14233971933）
+2026-02-10 21:30:42,972 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:43,000 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:30:43,242 - base_page - INFO - 随机睡眠 0.35 秒
+2026-02-10 21:30:44,337 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:30:44,399 - base_page - INFO - 随机睡眠 0.29 秒
+2026-02-10 21:30:44,692 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:30:45,194 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:30:45,195 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14264283433）
+2026-02-10 21:30:45,822 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:45,878 - base_page - INFO - 随机睡眠 0.10 秒
+2026-02-10 21:30:46,052 - base_page - INFO - 随机睡眠 0.33 秒
+2026-02-10 21:30:47,366 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:30:47,494 - base_page - INFO - 随机睡眠 0.35 秒
+2026-02-10 21:30:47,849 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:30:48,350 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:30:48,350 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14276819755）
+2026-02-10 21:30:49,009 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:49,050 - base_page - INFO - 随机睡眠 0.16 秒
+2026-02-10 21:30:49,251 - base_page - INFO - 随机睡眠 0.42 秒
+2026-02-10 21:30:50,504 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:30:50,634 - base_page - INFO - 随机睡眠 0.37 秒
+2026-02-10 21:30:51,011 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:30:51,512 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 21:30:51,512 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14215950872）
+2026-02-10 21:30:52,167 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:30:52,217 - base_page - INFO - 随机睡眠 0.23 秒
+2026-02-10 21:30:52,501 - base_page - INFO - 随机睡眠 0.49 秒
+2026-02-10 21:30:53,889 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:30:54,037 - base_page - INFO - 随机睡眠 0.21 秒
+2026-02-10 21:30:54,252 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:30:54,753 - run - INFO - 
+========== 处理第 5/79 个运单号 ==========
+2026-02-10 21:30:54,753 - ydh_page - INFO - 处理运单号：YT111111115（手机号：14202196191）
+2026-02-10 21:30:55,364 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:31:05,951 - ydh_page - ERROR - 处理运单号YT111111115失败，执行页面刷新：Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 79, in process_single_ydh
+    mobile_elem = self.wait_element_clickable(self.MOBILE_INPUT)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pythonProject\ydh_auto\page\base_page.py", line 31, in wait_element_clickable
+    return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:31:06,263 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111115.png
+2026-02-10 21:31:06,263 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:31:10,843 - run - ERROR - 处理运单号 YT111111115 时发生异常：Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 79, in process_single_ydh
+    mobile_elem = self.wait_element_clickable(self.MOBILE_INPUT)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pythonProject\ydh_auto\page\base_page.py", line 31, in wait_element_clickable
+    return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:31:10,844 - run - INFO - 
+========== 处理第 6/79 个运单号 ==========
+2026-02-10 21:31:10,844 - ydh_page - INFO - 处理运单号：YT111111116（手机号：14206159156）
+2026-02-10 21:31:11,802 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:31:11,867 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:31:12,147 - base_page - INFO - 随机睡眠 0.35 秒
+2026-02-10 21:31:13,597 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:31:13,765 - base_page - INFO - 随机睡眠 0.10 秒
+2026-02-10 21:31:13,866 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:31:14,367 - run - INFO - 
+========== 处理第 7/79 个运单号 ==========
+2026-02-10 21:31:14,367 - ydh_page - INFO - 处理运单号：YT111111117（手机号：14291679415）
+2026-02-10 21:31:14,961 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:31:15,033 - base_page - INFO - 随机睡眠 0.22 秒
+2026-02-10 21:31:15,324 - base_page - INFO - 随机睡眠 0.46 秒
+2026-02-10 21:31:16,669 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:31:16,789 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:31:17,026 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:31:17,527 - run - INFO - 
+========== 处理第 8/79 个运单号 ==========
+2026-02-10 21:31:17,528 - ydh_page - INFO - 处理运单号：YT111111118（手机号：14259285778）
+2026-02-10 21:31:18,132 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:31:18,173 - base_page - INFO - 随机睡眠 0.30 秒
+2026-02-10 21:31:18,579 - base_page - INFO - 随机睡眠 0.30 秒
+2026-02-10 21:31:19,777 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:31:19,890 - base_page - INFO - 随机睡眠 0.20 秒
+2026-02-10 21:31:20,095 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:31:20,596 - run - INFO - 
+========== 处理第 9/79 个运单号 ==========
+2026-02-10 21:31:20,596 - ydh_page - INFO - 处理运单号：YT111111119（手机号：14238502678）
+2026-02-10 21:31:21,290 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:31:21,366 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:31:21,591 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:31:22,981 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:31:23,132 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:31:23,268 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:31:23,647 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:31:23,649 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/b5e5b41f03c80c6c439d8d0f33d1c30d
+2026-02-10 21:54:04,859 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:54:05,049 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:54:05,707 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:54:05,723 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:54:05,723 - ydh_page - INFO - 输入货架号
+2026-02-10 21:54:06,250 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:54:06,251 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:54:06,251 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14216097099）
+2026-02-10 21:54:07,018 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:54:07,056 - base_page - INFO - 随机睡眠 0.49 秒
+2026-02-10 21:54:07,579 - base_page - INFO - 随机睡眠 0.15 秒
+2026-02-10 21:54:08,457 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:54:08,561 - base_page - INFO - 随机睡眠 0.13 秒
+2026-02-10 21:54:08,698 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:54:09,199 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:54:09,200 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14216526186）
+2026-02-10 21:54:11,535 - ydh_page - ERROR - 处理运单号YT111111112失败，执行页面刷新：Message: stale element reference: stale element not found
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019aac03
+	0x7ff7019a96f6
+	0x7ff70199c5cc
+	0x7ff70199a4e7
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 74, in process_single_ydh
+    ydh_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019aac03
+	0x7ff7019a96f6
+	0x7ff70199c5cc
+	0x7ff70199a4e7
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:54:11,758 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111112.png
+2026-02-10 21:54:11,762 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 21:54:15,944 - run - ERROR - 处理运单号 YT111111112 时发生异常：Message: stale element reference: stale element not found
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019aac03
+	0x7ff7019a96f6
+	0x7ff70199c5cc
+	0x7ff70199a4e7
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\pythonProject\ydh_auto\page\ydh_page.py", line 74, in process_single_ydh
+    ydh_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019aac03
+	0x7ff7019a96f6
+	0x7ff70199c5cc
+	0x7ff70199a4e7
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 21:54:15,949 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:54:15,951 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14202436601）
+2026-02-10 21:54:16,584 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:54:16,609 - base_page - INFO - 随机睡眠 0.34 秒
+2026-02-10 21:54:16,988 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:54:17,938 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:54:18,032 - base_page - INFO - 随机睡眠 0.21 秒
+2026-02-10 21:54:18,245 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:54:18,746 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 21:54:18,746 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14260273291）
+2026-02-10 21:54:19,379 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:54:19,409 - base_page - INFO - 随机睡眠 0.38 秒
+2026-02-10 21:54:19,843 - base_page - INFO - 随机睡眠 0.13 秒
+2026-02-10 21:54:20,768 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:54:20,864 - base_page - INFO - 随机睡眠 0.27 秒
+2026-02-10 21:54:21,143 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:54:21,644 - run - INFO - 
+========== 处理第 5/79 个运单号 ==========
+2026-02-10 21:54:21,644 - ydh_page - INFO - 处理运单号：YT111111115（手机号：14210259411）
+2026-02-10 21:54:22,257 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:54:22,284 - base_page - INFO - 随机睡眠 0.40 秒
+2026-02-10 21:54:22,724 - base_page - INFO - 随机睡眠 0.39 秒
+2026-02-10 21:54:23,561 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:54:23,563 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/49ded5931a23e601f554d537dba84ddc
+2026-02-10 21:56:46,590 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:56:46,767 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:56:47,501 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:56:47,514 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:56:47,514 - ydh_page - INFO - 输入货架号
+2026-02-10 21:56:48,106 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:56:48,106 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:56:48,106 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14215157622）
+2026-02-10 21:56:49,215 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:56:49,239 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:56:49,508 - base_page - INFO - 随机睡眠 0.45 秒
+2026-02-10 21:56:50,754 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:57:07,995 - base_page - INFO - 随机睡眠 0.43 秒
+2026-02-10 21:57:08,431 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:57:08,932 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:57:08,932 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14231408256）
+2026-02-10 21:57:09,751 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:57:09,804 - base_page - INFO - 随机睡眠 0.16 秒
+2026-02-10 21:57:10,007 - base_page - INFO - 随机睡眠 0.45 秒
+2026-02-10 21:57:11,302 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:57:11,392 - base_page - INFO - 随机睡眠 0.27 秒
+2026-02-10 21:57:11,672 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:57:12,173 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:57:12,175 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14227076019）
+2026-02-10 21:57:12,840 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:57:12,876 - base_page - INFO - 随机睡眠 0.47 秒
+2026-02-10 21:57:13,397 - base_page - INFO - 随机睡眠 0.43 秒
+2026-02-10 21:57:14,577 - run - INFO - 断开Chrome驱动连接
+2026-02-10 21:59:14,726 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 21:59:15,067 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 21:59:15,441 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 21:59:15,468 - ydh_page - INFO - 已在目标页面，跳过访问
+2026-02-10 21:59:15,468 - ydh_page - INFO - 输入货架号
+2026-02-10 21:59:15,948 - ydh_page - INFO - 货架号输入完成
+2026-02-10 21:59:15,948 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 21:59:15,949 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14253180902）
+2026-02-10 21:59:16,719 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:16,796 - base_page - INFO - 随机睡眠 0.23 秒
+2026-02-10 21:59:17,079 - base_page - INFO - 随机睡眠 0.38 秒
+2026-02-10 21:59:18,403 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:18,538 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:59:18,779 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:19,280 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 21:59:19,280 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14242561422）
+2026-02-10 21:59:20,088 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:20,130 - base_page - INFO - 随机睡眠 0.15 秒
+2026-02-10 21:59:20,348 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:59:21,505 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:21,649 - base_page - INFO - 随机睡眠 0.46 秒
+2026-02-10 21:59:22,108 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:22,609 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 21:59:22,609 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14234191122）
+2026-02-10 21:59:23,382 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:23,434 - base_page - INFO - 随机睡眠 0.20 秒
+2026-02-10 21:59:23,715 - base_page - INFO - 随机睡眠 0.14 秒
+2026-02-10 21:59:24,828 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:24,959 - base_page - INFO - 随机睡眠 0.37 秒
+2026-02-10 21:59:25,330 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:25,832 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 21:59:25,832 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14202288451）
+2026-02-10 21:59:26,732 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:26,822 - base_page - INFO - 随机睡眠 0.36 秒
+2026-02-10 21:59:27,269 - base_page - INFO - 随机睡眠 0.21 秒
+2026-02-10 21:59:28,390 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:28,552 - base_page - INFO - 随机睡眠 0.44 秒
+2026-02-10 21:59:28,994 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:29,496 - run - INFO - 
+========== 处理第 5/79 个运单号 ==========
+2026-02-10 21:59:29,498 - ydh_page - INFO - 处理运单号：YT111111115（手机号：14208521691）
+2026-02-10 21:59:36,638 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:36,661 - base_page - INFO - 随机睡眠 0.36 秒
+2026-02-10 21:59:37,069 - base_page - INFO - 随机睡眠 0.48 秒
+2026-02-10 21:59:38,385 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:38,519 - base_page - INFO - 随机睡眠 0.22 秒
+2026-02-10 21:59:38,735 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:39,236 - run - INFO - 
+========== 处理第 6/79 个运单号 ==========
+2026-02-10 21:59:39,237 - ydh_page - INFO - 处理运单号：YT111111116（手机号：14251820060）
+2026-02-10 21:59:39,751 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:39,791 - base_page - INFO - 随机睡眠 0.13 秒
+2026-02-10 21:59:39,964 - base_page - INFO - 随机睡眠 0.43 秒
+2026-02-10 21:59:41,179 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:41,293 - base_page - INFO - 随机睡眠 0.25 秒
+2026-02-10 21:59:41,544 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:42,045 - run - INFO - 
+========== 处理第 7/79 个运单号 ==========
+2026-02-10 21:59:42,045 - ydh_page - INFO - 处理运单号：YT111111117（手机号：14244882678）
+2026-02-10 21:59:42,590 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:42,658 - base_page - INFO - 随机睡眠 0.32 秒
+2026-02-10 21:59:43,019 - base_page - INFO - 随机睡眠 0.28 秒
+2026-02-10 21:59:44,046 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:44,148 - base_page - INFO - 随机睡眠 0.48 秒
+2026-02-10 21:59:44,625 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:45,126 - run - INFO - 
+========== 处理第 8/79 个运单号 ==========
+2026-02-10 21:59:45,126 - ydh_page - INFO - 处理运单号：YT111111118（手机号：14237853352）
+2026-02-10 21:59:45,695 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:45,748 - base_page - INFO - 随机睡眠 0.16 秒
+2026-02-10 21:59:45,948 - base_page - INFO - 随机睡眠 0.46 秒
+2026-02-10 21:59:47,155 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:47,272 - base_page - INFO - 随机睡眠 0.32 秒
+2026-02-10 21:59:47,590 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:48,091 - run - INFO - 
+========== 处理第 9/79 个运单号 ==========
+2026-02-10 21:59:48,092 - ydh_page - INFO - 处理运单号：YT111111119（手机号：14222546313）
+2026-02-10 21:59:48,637 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:48,693 - base_page - INFO - 随机睡眠 0.46 秒
+2026-02-10 21:59:49,180 - base_page - INFO - 随机睡眠 0.17 秒
+2026-02-10 21:59:50,110 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:50,277 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 21:59:50,516 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:51,017 - run - INFO - 
+========== 处理第 10/79 个运单号 ==========
+2026-02-10 21:59:51,018 - ydh_page - INFO - 处理运单号：YT111111120（手机号：14282078661）
+2026-02-10 21:59:51,569 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:51,616 - base_page - INFO - 随机睡眠 0.38 秒
+2026-02-10 21:59:52,039 - base_page - INFO - 随机睡眠 0.38 秒
+2026-02-10 21:59:53,221 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:53,346 - base_page - INFO - 随机睡眠 0.28 秒
+2026-02-10 21:59:53,623 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:54,123 - run - INFO - 
+========== 处理第 11/79 个运单号 ==========
+2026-02-10 21:59:54,124 - ydh_page - INFO - 处理运单号：YT111111121（手机号：14276541592）
+2026-02-10 21:59:54,676 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:54,706 - base_page - INFO - 随机睡眠 0.21 秒
+2026-02-10 21:59:55,012 - base_page - INFO - 随机睡眠 0.28 秒
+2026-02-10 21:59:56,049 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:56,199 - base_page - INFO - 随机睡眠 0.22 秒
+2026-02-10 21:59:56,418 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:56,919 - run - INFO - 
+========== 处理第 12/79 个运单号 ==========
+2026-02-10 21:59:56,919 - ydh_page - INFO - 处理运单号：YT111111122（手机号：14265140101）
+2026-02-10 21:59:57,454 - ydh_page - INFO - 运单号输入完成
+2026-02-10 21:59:57,493 - base_page - INFO - 随机睡眠 0.26 秒
+2026-02-10 21:59:57,784 - base_page - INFO - 随机睡眠 0.26 秒
+2026-02-10 21:59:58,790 - ydh_page - INFO - 手机号输入完成
+2026-02-10 21:59:58,904 - base_page - INFO - 随机睡眠 0.23 秒
+2026-02-10 21:59:59,136 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 21:59:59,638 - run - INFO - 
+========== 处理第 13/79 个运单号 ==========
+2026-02-10 21:59:59,638 - ydh_page - INFO - 处理运单号：YT111111123（手机号：14221131746）
+2026-02-10 22:00:00,269 - ydh_page - INFO - 运单号输入完成
+2026-02-10 22:00:00,336 - base_page - INFO - 随机睡眠 0.18 秒
+2026-02-10 22:00:00,546 - ydh_page - ERROR - 处理运单号YT111111123失败，执行页面刷新：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 81, in process_single_ydh
+    mobile_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 22:00:00,839 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111123.png
+2026-02-10 22:00:00,839 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 22:00:06,307 - run - ERROR - 处理运单号 YT111111123 时发生异常：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 81, in process_single_ydh
+    mobile_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 22:00:09,399 - ydh_page - INFO - 输入货架号
+2026-02-10 22:00:19,998 - ydh_page - ERROR - 输入货架号失败：Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 81, in process_single_ydh
+    mobile_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019f02ac
+	0x7ff7019e327b
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 52, in input_shelf_num
+    shelf_elem = self.wait_element_clickable(self.SHELF_NUM_INPUT)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\page\base_page.py", line 31, in wait_element_clickable
+    return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff7019edf5a
+	0x7ff7019ee38c
+	0x7ff701a43327
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 22:00:24,364 - run - INFO - 断开Chrome驱动连接
+2026-02-10 22:00:24,366 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/65266b9e66dac1d1f522b47f0467db08
+2026-02-10 22:00:30,144 - run - INFO - ========== 开始执行运单号自动化处理 ==========
+2026-02-10 22:00:30,448 - excel_utils - INFO - 成功读取Excel，共79个唯一运单号
+2026-02-10 22:00:31,116 - driver_utils - INFO - 成功连接Chrome实例
+2026-02-10 22:00:31,164 - ydh_page - INFO - 访问目标页面：http://yzwebpre.mamayz.com:8080/operation/newInStage
+2026-02-10 22:00:33,846 - ydh_page - INFO - 输入货架号
+2026-02-10 22:00:34,531 - ydh_page - INFO - 货架号输入完成
+2026-02-10 22:00:34,533 - run - INFO - 
+========== 处理第 1/79 个运单号 ==========
+2026-02-10 22:00:34,533 - ydh_page - INFO - 处理运单号：YT111111111（手机号：14208375317）
+2026-02-10 22:00:35,195 - ydh_page - INFO - 运单号输入完成
+2026-02-10 22:00:35,248 - base_page - INFO - 随机睡眠 0.17 秒
+2026-02-10 22:00:35,469 - base_page - INFO - 随机睡眠 0.33 秒
+2026-02-10 22:00:36,593 - ydh_page - INFO - 手机号输入完成
+2026-02-10 22:00:36,743 - base_page - INFO - 随机睡眠 0.41 秒
+2026-02-10 22:00:37,161 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 22:00:37,663 - run - INFO - 
+========== 处理第 2/79 个运单号 ==========
+2026-02-10 22:00:37,663 - ydh_page - INFO - 处理运单号：YT111111112（手机号：14283660330）
+2026-02-10 22:00:38,292 - ydh_page - INFO - 运单号输入完成
+2026-02-10 22:00:38,333 - base_page - INFO - 随机睡眠 0.47 秒
+2026-02-10 22:00:38,854 - base_page - INFO - 随机睡眠 0.36 秒
+2026-02-10 22:00:39,981 - ydh_page - INFO - 手机号输入完成
+2026-02-10 22:00:40,122 - base_page - INFO - 随机睡眠 0.49 秒
+2026-02-10 22:00:40,616 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 22:00:41,120 - run - INFO - 
+========== 处理第 3/79 个运单号 ==========
+2026-02-10 22:00:41,121 - ydh_page - INFO - 处理运单号：YT111111113（手机号：14227874584）
+2026-02-10 22:00:41,742 - ydh_page - INFO - 运单号输入完成
+2026-02-10 22:00:41,780 - base_page - INFO - 随机睡眠 0.30 秒
+2026-02-10 22:00:42,119 - base_page - INFO - 随机睡眠 0.33 秒
+2026-02-10 22:00:43,253 - ydh_page - INFO - 手机号输入完成
+2026-02-10 22:00:43,356 - base_page - INFO - 随机睡眠 0.41 秒
+2026-02-10 22:00:43,769 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 22:00:44,271 - run - INFO - 
+========== 处理第 4/79 个运单号 ==========
+2026-02-10 22:00:44,271 - ydh_page - INFO - 处理运单号：YT111111114（手机号：14273890501）
+2026-02-10 22:00:44,844 - ydh_page - INFO - 运单号输入完成
+2026-02-10 22:00:44,886 - base_page - INFO - 随机睡眠 0.24 秒
+2026-02-10 22:00:45,169 - base_page - INFO - 随机睡眠 0.11 秒
+2026-02-10 22:00:46,054 - ydh_page - INFO - 手机号输入完成
+2026-02-10 22:00:46,150 - base_page - INFO - 随机睡眠 0.36 秒
+2026-02-10 22:00:46,513 - ydh_page - INFO - 提交按钮已点击
+2026-02-10 22:00:47,014 - run - INFO - 
+========== 处理第 5/79 个运单号 ==========
+2026-02-10 22:00:47,014 - ydh_page - INFO - 处理运单号：YT111111115（手机号：14297512719）
+2026-02-10 22:00:47,362 - ydh_page - ERROR - 处理运单号YT111111115失败，执行页面刷新：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019e4311
+	0x7ff7019e3550
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 74, in process_single_ydh
+    ydh_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019e4311
+	0x7ff7019e3550
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 22:00:47,653 - base_page - INFO - 错误截图已保存：screenshots\ydh_error_YT111111115.png
+2026-02-10 22:00:47,653 - ydh_page - INFO - 开始刷新当前页面...
+2026-02-10 22:00:52,114 - run - ERROR - 处理运单号 YT111111115 时发生异常：Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019e4311
+	0x7ff7019e3550
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+Traceback (most recent call last):
+  File "D:\pythonProject\ydh_auto\run.py", line 80, in main
+    ydh_page.process_single_ydh(ydh)
+  File "D:\PythonProject\ydh_auto\page\ydh_page.py", line 74, in process_single_ydh
+    ydh_elem.clear()
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 147, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 508, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\PythonProject\ydh_auto\venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff701bf3315
+	0x7ff701bf3370
+	0x7ff701993bdf
+	0x7ff70199b8fa
+	0x7ff70199e994
+	0x7ff70199ea5f
+	0x7ff7019e4311
+	0x7ff7019e3550
+	0x7ff701a1677a
+	0x7ff7019e0846
+	0x7ff701a3fd27
+	0x7ff7019deb10
+	0x7ff7019dfbc3
+	0x7ff701ec4120
+	0x7ff701ebe49d
+	0x7ff701edf49a
+	0x7ff701c0f875
+	0x7ff701c1805c
+	0x7ff701bfc6f4
+	0x7ff701bfc8a5
+	0x7ff701be2c72
+	0x7ffa8d4ae8d7
+	0x7ffa8e82c53c
+
+2026-02-10 22:00:57,340 - ydh_page - INFO - 输入货架号
+2026-02-10 22:00:57,794 - ydh_page - INFO - 货架号输入完成
+2026-02-10 22:02:12,211 - run - INFO - 断开Chrome驱动连接
+2026-02-10 22:02:12,213 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)': /session/bb70eb1b79d5cefcde129d778cb564bc
