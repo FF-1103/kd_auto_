@@ -24,8 +24,9 @@ class YdhPage(BasePage):
     SHELF_NUM_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div['
                                  '1]/form/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div/input')
     # 序号
-    SN_NUM_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div['
-                              '1]/form/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div/input')
+    SN_NUM_INPUT = (By.XPATH,
+                    '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div[1]/form/div/div[1]/div['
+                    '2]/div/div/div[1]/div[3]/div/div/div/input')
     #  运单号
     YDH_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div[1]/form/div/div['
                            '1]/div[3]/div/div/div/input')
@@ -41,6 +42,7 @@ class YdhPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
+        self.sn_num = read_config("ENV", "sn_num")
         self.login_url = read_config("ENV", "login_url")
         self.shelf_num = read_config("ENV", "shelf_num")
 
@@ -61,6 +63,19 @@ class YdhPage(BasePage):
             self.force_clear_input(shelf_elem)
             self.shelf_num = random.randint(100, 9998)
             shelf_elem.send_keys(self.shelf_num)
+            logger.info("货架号输入完成")
+        except Exception as e:
+            logger.error(f"输入货架号失败：{str(e)}", exc_info=True)
+            raise
+
+    def input_sn_num(self):
+        """输入序号"""
+        logger.info("输入序号")
+        try:
+            sn_elem = self.wait_element_clickable(self.SN_NUM_INPUT)
+            self.force_clear_input(sn_elem)
+            self.sn_num = random.randint(100, 9998)
+            sn_elem.send_keys(self.sn_num)
             logger.info("货架号输入完成")
         except Exception as e:
             logger.error(f"输入货架号失败：{str(e)}", exc_info=True)

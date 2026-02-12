@@ -104,9 +104,6 @@ async def process_waybills(db: Session = Depends(get_db)):
 
         except Exception as e:
             return {"code": 500, "msg": f"执行异常：{str(e)}"}
-        finally:
-            if driver:
-                driver.quit()
 
     except Exception as e:
         return {"code": 500, "msg": f"系统异常：{str(e)}"}
@@ -131,6 +128,7 @@ async def retry_failed_waybills(db: Session = Depends(get_db)):
             ydh = YdhPage(driver)
             ydh.open_ydh_page()
             ydh.input_shelf_num()
+            ydh.input_sn_num()
 
             ok = 0
             ng = 0
@@ -156,9 +154,6 @@ async def retry_failed_waybills(db: Session = Depends(get_db)):
 
         except Exception as e:
             return {"code": 500, "msg": f"重试异常：{str(e)}"}
-        finally:
-            if driver:
-                driver.quit()
 
     except Exception as e:
         return {"code": 500, "msg": f"系统异常：{str(e)}"}
