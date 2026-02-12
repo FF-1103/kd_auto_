@@ -2,214 +2,357 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>运单号处理系统</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
 
         .container {
-            border: 1px solid #ddd;
-            padding: 30px;
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            background: #4a5568;
+            color: #fff;
+            padding: 24px 30px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 24px 30px;
+        }
+
+        .section {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .section-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .section-icon.upload { background: #e2e8f0; }
+        .section-icon.process { background: #e2e8f0; }
+        .section-icon.retry { background: #e2e8f0; }
+        .section-icon.export { background: #e2e8f0; }
+
+        .section h3 {
+            font-size: 15px;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .section p {
+            color: #718096;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            background-color: #4285f4;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 7px;
+            font-size: 14px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
+            text-decoration: none;
         }
 
-        .btn:hover {
-            background-color: #3367d6;
+        .btn-primary {
+            background: #5a7fa8;
+            color: #fff;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #4a6d8c;
+        }
+
+        .btn-success {
+            background: #5a9a7a;
+            color: #fff;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background: #4a8a6a;
+        }
+
+        .btn-warning {
+            background: #a07a5a;
+            color: #fff;
+        }
+
+        .btn-warning:hover:not(:disabled) {
+            background: #8a6a4a;
+        }
+
+        .btn-download {
+            background: #718096;
+            color: #fff;
+        }
+
+        .btn-download:hover:not(:disabled) {
+            background: #5a6b7c;
+        }
+
+        .btn-export {
+            background: #6b7280;
+            color: #fff;
+        }
+
+        .btn-export:hover:not(:disabled) {
+            background: #4b5563;
         }
 
         .btn:disabled {
-            background-color: #9aa0a6;
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
-        .upload-area, .process-area, .retry-area {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+        .file-input {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff;
         }
 
         #result {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            min-height: 20px;
-            white-space: pre-wrap;
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 7px;
+            font-size: 14px;
+            display: none;
         }
 
-        .success {
-            background-color: #e8f5e9;
-            color: #2e7d32;
+        .result-success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
         }
 
-        .error {
-            background-color: #ffebee;
-            color: #c62828;
+        .result-error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
         }
 
-        .info {
-            background-color: #e3f2fd;
-            color: #1976d2;
+        .result-info {
+            background: #bee3f8;
+            color: #2a4365;
+            border: 1px solid #90cdf4;
         }
 
         .loading {
             display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #fff;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
-            border-top-color: transparent;
+            border-top-color: #fff;
             animation: spin 1s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
+            margin-right: 6px;
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>运单号处理系统</h1>
+    <div class="container">
+        <div class="header">
+            <h1>运单号处理系统</h1>
+        </div>
+        <div class="content">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon upload">📥</div>
+                    <h3>1. 导入运单号</h3>
+                </div>
+                <p>选择 Excel 文件导入运单号</p>
+                <div class="row">
+                    <a href="/download-template" class="btn btn-download">下载模板</a>
+                    <input type="file" id="excelFile" class="file-input" accept=".xlsx,.xls">
+                    <button id="importBtn" class="btn btn-primary" onclick="importExcel()">导入</button>
+                </div>
+            </div>
 
-    <div class="upload-area">
-        <h3>1. 导入运单号Excel</h3>
-        <input type="file" id="excelFile" accept=".xlsx,.xls">
-        <button id="importBtn" class="btn" onclick="importExcel()">导入</button>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon process">⚡</div>
+                    <h3>2. 执行处理</h3>
+                </div>
+                <p>处理所有待处理运单号（pending 状态）</p>
+                <button id="processBtn" class="btn btn-success" onclick="processWaybills()">执行处理</button>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon retry">🔄</div>
+                    <h3>3. 重试失败</h3>
+                </div>
+                <p>重新处理失败的运单号</p>
+                <button id="retryBtn" class="btn btn-warning" onclick="retryFailedWaybills()">重试失败数据</button>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon export">📤</div>
+                    <h3>4. 导出数据</h3>
+                </div>
+                <p>导出处理结果数据（按更新时间倒序）</p>
+                <div class="row">
+                    <a href="/export-completed" class="btn btn-export">导出成功数据</a>
+                    <a href="/export-failed" class="btn btn-export">导出失败数据</a>
+                </div>
+            </div>
+
+            <div id="result"></div>
+        </div>
     </div>
 
-    <div class="process-area">
-        <h3>2. 执行待处理运单号（pending）</h3>
-        <button id="processBtn" class="btn" onclick="processWaybills()">执行处理</button>
-    </div>
+    <script>
+        let running = false;
 
-    <div class="retry-area">
-        <h3>3. 重试失败运单号（failed）</h3>
-        <button id="retryBtn" class="btn" onclick="retryFailedWaybills()">重试失败数据</button>
-    </div>
-
-    <div id="result"></div>
-</div>
-
-<script>
-    let running = false;
-
-    function setLoading(btnId, msg) {
-        const btn = document.getElementById(btnId);
-        btn.disabled = true;
-        btn.innerHTML = `<span class="loading"></span>${msg}`;
-    }
-
-    function resetBtn(btnId, text) {
-        const btn = document.getElementById(btnId);
-        btn.disabled = false;
-        btn.innerText = text;
-    }
-
-    function show(msg, cls) {
-        const r = document.getElementById('result');
-        r.innerText = msg;
-        r.className = cls;
-    }
-
-    // 导入
-    async function importExcel() {
-        if (running) {
-            show("正在执行中，请等待…", "info");
-            return;
-        }
-        const file = document.getElementById('excelFile').files[0];
-        if (!file) {
-            show("请选择Excel文件", "error");
-            return;
+        function setLoading(btnId, msg) {
+            const btn = document.getElementById(btnId);
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loading"></span>${msg}`;
         }
 
-        running = true;
-        setLoading('importBtn', '导入中...');
-        show("正在导入运单号...", "info");
-
-        const fd = new FormData();
-        fd.append('file', file);
-
-        try {
-            const res = await fetch('/import-excel', {method: 'POST', body: fd});
-            const data = await res.json();
-            if (data.code === 200) show(data.msg, "success");
-            else show(data.msg, "error");
-        } catch (e) {
-            show("导入失败：" + e.message, "error");
-        } finally {
-            running = false;
-            resetBtn('importBtn', '导入');
-            document.getElementById('excelFile').value = '';
+        function resetBtn(btnId, text) {
+            const btn = document.getElementById(btnId);
+            btn.disabled = false;
+            btn.innerHTML = text;
         }
-    }
 
-    // 执行pending
-    async function processWaybills() {
-        if (running) {
-            show("正在执行中，请等待…", "info");
-            return;
+        function show(msg, cls) {
+            const r = document.getElementById('result');
+            r.innerText = msg;
+            r.className = cls;
+            r.style.display = 'block';
         }
-        running = true;
-        setLoading('processBtn', '处理中...');
-        show("正在打开浏览器处理运单号，请等待任务结束...\n（请勿关闭页面）", "info");
 
-        try {
-            const res = await fetch('/process-waybills', {method: 'POST'});
-            const data = await res.json();
-            if (data.code === 200) show(data.msg, "success");
-            else show(data.msg, "error");
-        } catch (e) {
-            show("处理异常：" + e.message, "error");
-        } finally {
-            running = false;
-            resetBtn('processBtn', '执行处理');
-        }
-    }
+        async function importExcel() {
+            if (running) {
+                show("正在执行中，请等待...", "result-info");
+                return;
+            }
+            const file = document.getElementById('excelFile').files[0];
+            if (!file) {
+                show("请选择 Excel 文件", "result-error");
+                return;
+            }
 
-    // 重试failed
-    async function retryFailedWaybills() {
-        if (running) {
-            show("正在执行中，请等待…", "info");
-            return;
-        }
-        running = true;
-        setLoading('retryBtn', '重试中...');
-        show("正在重试失败运单号...", "info");
+            running = true;
+            setLoading('importBtn', '导入中...');
+            show("正在导入运单号...", "result-info");
 
-        try {
-            const res = await fetch('/retry-failed-waybills', {method: 'POST'});
-            const data = await res.json();
-            if (data.code === 200) show(data.msg, "success");
-            else show(data.msg, "error");
-        } catch (e) {
-            show("重试异常：" + e.message, "error");
-        } finally {
-            running = false;
-            resetBtn('retryBtn', '重试失败数据');
+            const fd = new FormData();
+            fd.append('file', file);
+
+            try {
+                const res = await fetch('/import-excel', {method: 'POST', body: fd});
+                const data = await res.json();
+                if (data.code === 200) show(data.msg, "result-success");
+                else show(data.msg, "result-error");
+            } catch (e) {
+                show("导入失败：" + e.message, "result-error");
+            } finally {
+                running = false;
+                resetBtn('importBtn', '导入');
+                document.getElementById('excelFile').value = '';
+            }
         }
-    }
-</script>
+
+        async function processWaybills() {
+            if (running) {
+                show("正在执行中，请等待...", "result-info");
+                return;
+            }
+            running = true;
+            setLoading('processBtn', '处理中...');
+            show("正在处理运单号...", "result-info");
+
+            try {
+                const res = await fetch('/process-waybills', {method: 'POST'});
+                const data = await res.json();
+                if (data.code === 200) show(data.msg, "result-success");
+                else show(data.msg, "result-error");
+            } catch (e) {
+                show("处理异常：" + e.message, "result-error");
+            } finally {
+                running = false;
+                resetBtn('processBtn', '执行处理');
+            }
+        }
+
+        async function retryFailedWaybills() {
+            if (running) {
+                show("正在执行中，请等待...", "result-info");
+                return;
+            }
+            running = true;
+            setLoading('retryBtn', '重试中...');
+            show("正在重试失败运单号...", "result-info");
+
+            try {
+                const res = await fetch('/retry-failed-waybills', {method: 'POST'});
+                const data = await res.json();
+                if (data.code === 200) show(data.msg, "result-success");
+                else show(data.msg, "result-error");
+            } catch (e) {
+                show("重试异常：" + e.message, "result-error");
+            } finally {
+                running = false;
+                resetBtn('retryBtn', '重试失败数据');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -10,13 +10,19 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 import os
-from dotenv import load_dotenv
+from configparser import ConfigParser
 
-# 加载环境变量
-load_dotenv()
 
-# 初始化数据库连接
-engine = create_engine(os.getenv("DB_URL"), pool_pre_ping=True)
+def read_config(section, key):
+    """读取config.ini配置"""
+    config = ConfigParser()
+    config_path = os.path.join(os.path.dirname(__file__), "config", "config.ini")
+    config.read(config_path, encoding="utf-8")
+    return config.get(section, key)
+
+
+db_url = read_config("DATABASE", "db_url")
+engine = create_engine(db_url, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -31,10 +37,12 @@ class WaybillProcess(Base):
                             nullable=False, default='pending')
     create_time = Column(DateTime, nullable=False, default=func.now())
     update_time = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    remark = Column(String(500), default='')
 
     # 索引
     __table_args__ = (
         Index("idx_status_create_time", "process_status", "create_time"),
+        Index("idx_status_update_time", "process_status", "update_time"),
     )
 
 
