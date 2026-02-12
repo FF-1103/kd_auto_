@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>运单号处理系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .container {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #3367d6;
+        }
+
+        .btn:disabled {
+            background-color: #9aa0a6;
+            cursor: not-allowed;
+        }
+
+        .upload-area, .process-area, .retry-area {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 20px;
+            white-space: pre-wrap;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .info {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>运单号处理系统</h1>
+
+    <div class="upload-area">
+        <h3>1. 导入运单号Excel</h3>
+        <input type="file" id="excelFile" accept=".xlsx,.xls">
+        <button id="importBtn" class="btn" onclick="importExcel()">导入</button>
+    </div>
+
+    <div class="process-area">
+        <h3>2. 执行待处理运单号（pending）</h3>
+        <button id="processBtn" class="btn" onclick="processWaybills()">执行处理</button>
+    </div>
+
+    <div class="retry-area">
+        <h3>3. 重试失败运单号（failed）</h3>
+        <button id="retryBtn" class="btn" onclick="retryFailedWaybills()">重试失败数据</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    let running = false;
+
+    function setLoading(btnId, msg) {
+        const btn = document.getElementById(btnId);
+        btn.disabled = true;
+        btn.innerHTML = `<span class="loading"></span>${msg}`;
+    }
+
+    function resetBtn(btnId, text) {
+        const btn = document.getElementById(btnId);
+        btn.disabled = false;
+        btn.innerText = text;
+    }
+
+    function show(msg, cls) {
+        const r = document.getElementById('result');
+        r.innerText = msg;
+        r.className = cls;
+    }
+
+    // 导入
+    async function importExcel() {
+        if (running) {
+            show("正在执行中，请等待…", "info");
+            return;
+        }
+        const file = document.getElementById('excelFile').files[0];
+        if (!file) {
+            show("请选择Excel文件", "error");
+            return;
+        }
+
+        running = true;
+        setLoading('importBtn', '导入中...');
+        show("正在导入运单号...", "info");
+
+        const fd = new FormData();
+        fd.append('file', file);
+
+        try {
+            const res = await fetch('/import-excel', {method: 'POST', body: fd});
+            const data = await res.json();
+            if (data.code === 200) show(data.msg, "success");
+            else show(data.msg, "error");
+        } catch (e) {
+            show("导入失败：" + e.message, "error");
+        } finally {
+            running = false;
+            resetBtn('importBtn', '导入');
+            document.getElementById('excelFile').value = '';
+        }
+    }
+
+    // 执行pending
+    async function processWaybills() {
+        if (running) {
+            show("正在执行中，请等待…", "info");
+            return;
+        }
+        running = true;
+        setLoading('processBtn', '处理中...');
+        show("正在打开浏览器处理运单号，请等待任务结束...\n（请勿关闭页面）", "info");
+
+        try {
+            const res = await fetch('/process-waybills', {method: 'POST'});
+            const data = await res.json();
+            if (data.code === 200) show(data.msg, "success");
+            else show(data.msg, "error");
+        } catch (e) {
+            show("处理异常：" + e.message, "error");
+        } finally {
+            running = false;
+            resetBtn('processBtn', '执行处理');
+        }
+    }
+
+    // 重试failed
+    async function retryFailedWaybills() {
+        if (running) {
+            show("正在执行中，请等待…", "info");
+            return;
+        }
+        running = true;
+        setLoading('retryBtn', '重试中...');
+        show("正在重试失败运单号...", "info");
+
+        try {
+            const res = await fetch('/retry-failed-waybills', {method: 'POST'});
+            const data = await res.json();
+            if (data.code === 200) show(data.msg, "success");
+            else show(data.msg, "error");
+        } catch (e) {
+            show("重试异常：" + e.message, "error");
+        } finally {
+            running = false;
+            resetBtn('retryBtn', '重试失败数据');
+        }
+    }
+</script>
+</body>
+</html>

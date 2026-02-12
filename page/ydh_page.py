@@ -20,13 +20,20 @@ logger = get_logger("ydh_page")
 
 class YdhPage(BasePage):
     # 元素定位
+    # 取货码第一位
     SHELF_NUM_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div['
                                  '1]/form/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div/input')
+    # 序号
+    SN_NUM_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div['
+                              '1]/form/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div/input')
+    #  运单号
     YDH_INPUT = (By.XPATH, '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div[1]/form/div/div['
                            '1]/div[3]/div/div/div/input')
+    # 手机号
     MOBILE_INPUT = (By.XPATH,
                     '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div[1]/form/div/div[1]/div['
                     '4]/div/div/div[1]/div[1]/input')
+    # 提交
     SUBMIT_BTN = (By.XPATH,
                   '/html/body/div[1]/section/section/section/div/div[1]/div/main/div/div[1]/form/div/div[1]/div['
                   '6]/div/div/button')
