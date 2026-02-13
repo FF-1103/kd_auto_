@@ -49,10 +49,17 @@ def start_chrome_with_debug():
 
     # 启动Chrome
     try:
+        # 根据是否打包确定用户数据目录
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.dirname(__file__))
+        user_data_dir = os.path.join(base_dir, chrome_profile_dir)
+        
         subprocess.Popen([
             chrome_path,
             f"--remote-debugging-port={debug_port}",
-            f"--user-data-dir={os.path.join(os.path.dirname(os.path.dirname(__file__)), chrome_profile_dir)}",
+            f"--user-data-dir={user_data_dir}",
             "--start-maximized"
         ])
         logger.info(f"启动Chrome（调试端口{debug_port}），等待5秒...")

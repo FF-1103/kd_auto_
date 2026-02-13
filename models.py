@@ -10,13 +10,20 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 import os
+import sys
 from configparser import ConfigParser
 
 
 def read_config(section, key):
-    """读取config.ini配置"""
+    """读取config.ini配置（适配打包后的路径）"""
     config = ConfigParser()
-    config_path = os.path.join(os.path.dirname(__file__), "config", "config.ini")
+    if getattr(sys, 'frozen', False):
+        # 打包后：exe所在目录
+        base_dir = os.path.dirname(sys.executable)
+    else:
+        # 开发环境：当前文件所在目录
+        base_dir = os.path.dirname(__file__)
+    config_path = os.path.join(base_dir, "config", "config.ini")
     config.read(config_path, encoding="utf-8")
     return config.get(section, key)
 

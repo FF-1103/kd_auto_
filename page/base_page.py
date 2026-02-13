@@ -22,7 +22,16 @@ class BasePage:
         self.driver = driver
         self.sleep_min = float(read_config("SLEEP", "sleep_min"))
         self.sleep_max = float(read_config("SLEEP", "sleep_max"))
-        self.screenshot_dir = read_config("PATH", "screenshot_dir")
+        
+        # 根据是否打包确定截图目录（支持相对路径）
+        import sys
+        screenshot_dir = read_config("PATH", "screenshot_dir")
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.dirname(__file__))
+        self.screenshot_dir = os.path.join(base_dir, screenshot_dir)
+        
         if not os.path.exists(self.screenshot_dir):
             os.makedirs(self.screenshot_dir)
 
