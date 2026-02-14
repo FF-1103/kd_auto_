@@ -76,21 +76,12 @@ def get_reusable_driver():
     if not is_chrome_debug_running():
         start_chrome_with_debug()
 
-    # 驱动路径
-    if hasattr(sys, '_MEIPASS'):
-        driver_path = os.path.join(os.path.dirname(sys.executable), "chromedriver.exe")
-    else:
-        driver_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "chromedriver.exe")
-    if not os.path.exists(driver_path):
-        raise Exception(f"未找到ChromeDriver！路径：{driver_path}")
-
-    # 连接Chrome
+    # 连接Chrome - 使用selenium-manager自动管理ChromeDriver
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", f"127.0.0.1:{debug_port}")
-    service = Service(executable_path=driver_path)
 
     try:
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
         driver.implicitly_wait(5)
         if driver.window_handles:
             driver.switch_to.window(driver.window_handles[0])

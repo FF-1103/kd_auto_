@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运单号处理系统 - 登录</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+        }
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .login-header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .login-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .login-body {
+            padding: 40px 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+            margin-top: 12px;
+        }
+        .btn-secondary:hover:not(:disabled) {
+            background: #cbd5e0;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .message.success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+            display: block;
+        }
+        .message.error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+            display: block;
+        }
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .toggle-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #718096;
+        }
+        .toggle-link a {
+            color: #667eea;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>运单号处理系统</h1>
+            <p>请登录以继续</p>
+        </div>
+        <div class="login-body">
+            <div id="message" class="message"></div>
+            
+            <!-- 登录表单 -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginPhone">手机号</label>
+                    <input type="text" id="loginPhone" placeholder="请输入手机号" maxlength="11">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码">
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginBtn">登录</button>
+            </form>
+
+            <!-- 注册表单 -->
+            <form id="registerForm" class="hidden">
+                <div class="form-group">
+                    <label for="registerPhone">手机号</label>
+                    <input type="text" id="registerPhone" placeholder="请输入手机号" maxlength="11">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">密码</label>
+                    <input type="password" id="registerPassword" placeholder="请输入密码（至少6位）">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">确认密码</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="请再次输入密码">
+                </div>
+                <div class="form-group">
+                    <label for="registerNickname">昵称（可选）</label>
+                    <input type="text" id="registerNickname" placeholder="请输入昵称">
+                </div>
+                <button type="submit" class="btn btn-primary" id="registerBtn">注册</button>
+            </form>
+
+            <div class="toggle-link">
+                <span id="toggleText">还没有账号？</span>
+                <a id="toggleLink" onclick="toggleForm()">立即注册</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoginForm = true;
+
+        function toggleForm() {
+            isLoginForm = !isLoginForm;
+            document.getElementById('loginForm').classList.toggle('hidden');
+            document.getElementById('registerForm').classList.toggle('hidden');
+            document.getElementById('toggleText').textContent = isLoginForm ? '还没有账号？' : '已有账号？';
+            document.getElementById('toggleLink').textContent = isLoginForm ? '立即注册' : '立即登录';
+            hideMessage();
+        }
+
+        function showMessage(msg, type) {
+            const el = document.getElementById('message');
+            el.textContent = msg;
+            el.className = 'message ' + type;
+        }
+
+        function hideMessage() {
+            document.getElementById('message').className = 'message';
+        }
+
+        function setLoading(btnId, text) {
+            const btn = document.getElementById(btnId);
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span>' + text;
+        }
+
+        function resetBtn(btnId, text) {
+            const btn = document.getElementById(btnId);
+            btn.disabled = false;
+            btn.innerHTML = text;
+        }
+
+        function validatePhone(phone) {
+            const reg = /^1[3-9]\d{9}$/;
+            return reg.test(phone);
+        }
+
+        // 登录表单提交
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideMessage();
+
+            const phone = document.getElementById('loginPhone').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!phone || !password) {
+                showMessage('请输入手机号和密码', 'error');
+                return;
+            }
+
+            if (!validatePhone(phone)) {
+                showMessage('请输入正确的手机号', 'error');
+                return;
+            }
+
+            setLoading('loginBtn', '登录中...');
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone, password })
+                });
+                const data = await res.json();
+
+                if (data.code === 200) {
+                    showMessage('登录成功，正在跳转...', 'success');
+                    setTimeout(() => window.location.href = '/', 500);
+                } else {
+                    showMessage(data.msg, 'error');
+                    resetBtn('loginBtn', '登录');
+                }
+            } catch (e) {
+                showMessage('登录失败：' + e.message, 'error');
+                resetBtn('loginBtn', '登录');
+            }
+        });
+
+        // 注册表单提交
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideMessage();
+
+            const phone = document.getElementById('registerPhone').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const nickname = document.getElementById('registerNickname').value.trim();
+
+            if (!phone || !password || !confirmPassword) {
+                showMessage('请填写完整信息', 'error');
+                return;
+            }
+
+            if (!validatePhone(phone)) {
+                showMessage('请输入正确的手机号', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('密码至少6位', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('两次输入的密码不一致', 'error');
+                return;
+            }
+
+            setLoading('registerBtn', '注册中...');
+
+            try {
+                const res = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone, password, nickname })
+                });
+                const data = await res.json();
+
+                if (data.code === 200) {
+                    showMessage('注册成功，请登录', 'success');
+                    setTimeout(() => {
+                        toggleForm();
+                        resetBtn('registerBtn', '注册');
+                    }, 1000);
+                } else {
+                    showMessage(data.msg, 'error');
+                    resetBtn('registerBtn', '注册');
+                }
+            } catch (e) {
+                showMessage('注册失败：' + e.message, 'error');
+                resetBtn('registerBtn', '注册');
+            }
+        });
+    </script>
+</body>
+</html>

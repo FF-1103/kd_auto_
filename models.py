@@ -12,6 +12,7 @@ from sqlalchemy.sql import func
 import os
 import sys
 from configparser import ConfigParser
+from passlib.context import CryptContext
 
 
 def read_config(section, key):
@@ -33,6 +34,30 @@ engine = create_engine(db_url, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
+# 密码加密上下文 - 当前使用明文存储
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def get_password_hash(password):
+    """存储明文密码"""
+    return password
+
+def verify_password(plain_password, hashed_password):
+    """验证明文密码"""
+    return plain_password == hashed_password
+
+
+# 用户表模型
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    phone = Column(String(20), nullable=False, unique=True, index=True)
+    password_hash = Column(String(255), nullable=False)
+    nickname = Column(String(50), default='')
+    is_active = Column(String(1), default='1')  # '1'启用 '0'禁用
+    create_time = Column(DateTime, nullable=False, default=func.now())
+    update_time = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+
 
 # 运单处理表模型
 class WaybillProcess(Base):
@@ -40,6 +65,7 @@ class WaybillProcess(Base):
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     waybill_no = Column(String(50), nullable=False, unique=True)
+    phone = Column(String(20), nullable=False, index=True)
     process_status = Column(Enum('pending', 'processing', 'completed', 'failed'),
                             nullable=False, default='pending')
     create_time = Column(DateTime, nullable=False, default=func.now())
@@ -50,6 +76,7 @@ class WaybillProcess(Base):
     __table_args__ = (
         Index("idx_status_create_time", "process_status", "create_time"),
         Index("idx_status_update_time", "process_status", "update_time"),
+        Index("idx_phone_status", "phone", "process_status"),
     )
 
 

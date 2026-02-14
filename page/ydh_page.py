@@ -99,6 +99,20 @@ class YdhPage(BasePage):
             logger.info("手机号输入完成")
             self.random_sleep()
 
+            # 验证页面上输入的值是否与预期一致
+            actual_ydh = ydh_elem.get_attribute("value")
+            actual_mobile = mobile_elem.get_attribute("value")
+            
+            if actual_ydh != ydh:
+                logger.error(f"运单号验证失败：预期[{ydh}]，实际[{actual_ydh}]")
+                raise ValueError(f"运单号输入验证失败：预期[{ydh}]，实际[{actual_ydh}]")
+            
+            if actual_mobile != mobile:
+                logger.error(f"手机号验证失败：预期[{mobile}]，实际[{actual_mobile}]")
+                raise ValueError(f"手机号输入验证失败：预期[{mobile}]，实际[{actual_mobile}]")
+            
+            logger.info("输入验证通过，准备点击提交")
+
             submit_elem = self.wait_element_clickable(self.SUBMIT_BTN)
             submit_elem.click()
             self.random_sleep()

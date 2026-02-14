@@ -39,9 +39,11 @@ try:
     log_startup("正在导入模块...")
     
     try:
-        from fastapi import FastAPI, UploadFile, File, Depends, Request
-        from fastapi.responses import HTMLResponse, FileResponse
+        from fastapi import FastAPI, UploadFile, File, Depends, Request, Response, status
+        from fastapi.responses import HTMLResponse, FileResponse, JSONResponse, RedirectResponse
         from fastapi.templating import Jinja2Templates
+        from fastapi.exceptions import HTTPException
+        from starlette.middleware.sessions import SessionMiddleware
         log_startup("✓ FastAPI 导入成功")
     except Exception as e:
         log_startup(f"✗ FastAPI 导入失败: {str(e)}")
@@ -62,7 +64,7 @@ try:
         raise
     
     try:
-        from models import WaybillProcess, get_db
+        from models import WaybillProcess, User, get_db, get_password_hash, verify_password
         log_startup("✓ models 导入成功")
     except Exception as e:
         log_startup(f"✗ models 导入失败: {str(e)}")
@@ -93,10 +95,24 @@ try:
     from sqlalchemy.orm import Session
     from sqlalchemy.exc import IntegrityError
     from configparser import ConfigParser
+    from typing import Optional
     
     # 创建应用
     app = FastAPI(title="运单号自动化服务")
     log_startup("✓ FastAPI 应用创建成功")
+    
+    # 添加 Session 中间件（用于登录状态管理）
+    app.add_middleware(SessionMiddleware, secret_key="your-secret-key-change-this-in-production")
+    log_startup("✓ Session 中间件添加成功")
+    
+    # 全局状态变量
+    processing_status = {"running": False, "processed": 0, "total": 0}
+    
+    # 登录验证依赖
+    async def require_login(request: Request):
+        """验证用户是否已登录"""
+        if not request.session.get("user_id"):
+            raise HTTPException(status_code=401, detail="请先登录")
     
     # 根据是否打包设置模板目录
     if getattr(sys, 'frozen', False):
@@ -112,13 +128,120 @@ try:
     
     EXPIRE_DATE = dt.date(2026, 3, 15)
     
+    # 全局配置读取函数
+    def get_config():
+        """读取配置文件"""
+        if getattr(sys, 'frozen', False):
+            base_path = os.path.dirname(sys.executable)
+            config_path = os.path.join(base_path, "config", "config.ini")
+        else:
+            base_path = os.path.dirname(__file__)
+            config_path = os.path.join(base_path, "config", "config.ini")
+        
+        config = ConfigParser()
+        config.read(config_path, encoding="utf-8")
+        return config
+    
     @app.get("/", response_class=HTMLResponse)
     async def index(request: Request):
         try:
+            # 检查是否已登录
+            if not request.session.get("user_id"):
+                return RedirectResponse(url="/login", status_code=302)
             return templates.TemplateResponse("index.html", {"request": request})
         except Exception as e:
             log_startup(f"模板渲染错误: {str(e)}")
             raise
+    
+    @app.get("/login", response_class=HTMLResponse)
+    async def login_page(request: Request):
+        """登录页面"""
+        try:
+            # 如果已登录，跳转到首页
+            if request.session.get("user_id"):
+                return RedirectResponse(url="/", status_code=302)
+            return templates.TemplateResponse("login.html", {"request": request})
+        except Exception as e:
+            log_startup(f"登录页面渲染错误: {str(e)}")
+            raise
+    
+    @app.post("/login")
+    async def login(request: Request, db: Session = Depends(get_db)):
+        """用户登录接口"""
+        try:
+            data = await request.json()
+            phone = data.get("phone", "").strip()
+            password = data.get("password", "")
+            
+            if not phone or not password:
+                return {"code": 400, "msg": "请输入手机号和密码"}
+            
+            # 查询用户
+            user = db.query(User).filter(User.phone == phone).first()
+            if not user:
+                return {"code": 400, "msg": "手机号或密码错误"}
+            
+            if user.is_active != '1':
+                return {"code": 400, "msg": "账号已被禁用"}
+            
+            # 验证密码
+            if not verify_password(password, user.password_hash):
+                return {"code": 400, "msg": "手机号或密码错误"}
+            
+            # 设置登录状态
+            request.session["user_id"] = user.id
+            request.session["phone"] = user.phone
+            request.session["nickname"] = user.nickname or user.phone
+            
+            return {"code": 200, "msg": "登录成功"}
+        except Exception as e:
+            return {"code": 500, "msg": f"登录失败：{str(e)}"}
+    
+    @app.post("/register")
+    async def register(request: Request, db: Session = Depends(get_db)):
+        """用户注册接口"""
+        try:
+            data = await request.json()
+            phone = data.get("phone", "").strip()
+            password = data.get("password", "")
+            nickname = data.get("nickname", "").strip()
+            
+            if not phone or not password:
+                return {"code": 400, "msg": "请填写完整信息"}
+            
+            # 验证手机号格式
+            import re
+            if not re.match(r'^1[3-9]\d{9}$', phone):
+                return {"code": 400, "msg": "请输入正确的手机号"}
+            
+            if len(password) < 6:
+                return {"code": 400, "msg": "密码至少6位"}
+            
+            # 检查手机号是否已注册
+            existing = db.query(User).filter(User.phone == phone).first()
+            if existing:
+                return {"code": 400, "msg": "该手机号已注册"}
+            
+            # 创建新用户
+            new_user = User(
+                phone=phone,
+                password_hash=get_password_hash(password),
+                nickname=nickname,
+                is_active='1'
+            )
+            db.add(new_user)
+            db.commit()
+            
+            return {"code": 200, "msg": "注册成功"}
+        except Exception as e:
+            db.rollback()
+            return {"code": 500, "msg": f"注册失败：{str(e)}"}
+    
+    @app.get("/logout")
+    async def logout(request: Request):
+        """退出登录"""
+        request.session.clear()
+        return RedirectResponse(url="/login", status_code=302)
     
     # 获取模板文件路径
     def get_template_path(filename):
@@ -133,47 +256,52 @@ try:
                             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     
     @app.post("/import-excel")
-    async def import_excel(file: UploadFile = File(...), db: Session = Depends(get_db)):
+    async def import_excel(request: Request, file: UploadFile = File(...), db: Session = Depends(get_db), user=Depends(require_login)):
         try:
             if not file.filename.endswith(('.xlsx', '.xls')):
                 return {"code": 400, "msg": "仅支持Excel文件"}
-    
+
             df = pd.read_excel(file.file)
             if df.empty:
                 return {"code": 400, "msg": "Excel无数据"}
-    
-            success = 0
-            fail = 0
-            for v in df.iloc[:, 0].dropna():
-                no = str(v).strip()
-                if not no:
-                    fail += 1
-                    continue
-                try:
-                    w = WaybillProcess(waybill_no=no, process_status="pending")
-                    db.add(w)
-                    db.commit()
-                    success += 1
-                except IntegrityError:
-                    db.rollback()
-                    fail += 1
-                except:
-                    db.rollback()
-                    fail += 1
-    
-            return {"code": 200, "msg": f"导入完成 成功:{success} 失败:{fail}"}
-        except Exception as e:
-            return {"code": 500, "msg": f"导入异常：{str(e)}"}
-    
-    @app.post("/process-waybills")
-    async def process_waybills(db: Session = Depends(get_db)):
-        try:
-            if dt.date.today() > EXPIRE_DATE:
-                return {"code": 403, "msg": "已过期"}
-    
-            items = db.query(WaybillProcess).filter(WaybillProcess.process_status == "pending").all()
+
+            # 获取当前登录用户的手机号
+            phone = request.session.get("phone", "")
+
+            # 获取时间范围参数
+            data = await request.json()
+            start_date = data.get("start_date")
+            end_date = data.get("end_date")
+
+            # 构建查询条件 - 只查询当前用户的数据
+            query = db.query(WaybillProcess).filter(
+                WaybillProcess.process_status == "pending",
+                WaybillProcess.phone == phone
+            )
+
+            if start_date:
+                query = query.filter(WaybillProcess.create_time >= start_date)
+            if end_date:
+                # 结束日期加一天，包含当天所有数据
+                from datetime import timedelta
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+                end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+                query = query.filter(WaybillProcess.create_time < end_date_next)
+
+            # 读取配置
+            config = get_config()
+            max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
+            
+            # 限制最大条数
+            items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            
             if not items:
                 return {"code": 200, "msg": "暂无待处理运单号"}
+            
+            # 初始化状态
+            processing_status["running"] = True
+            processing_status["processed"] = 0
+            processing_status["total"] = len(items)
     
             driver = None
             try:
@@ -195,30 +323,162 @@ try:
                         w.process_status = "completed"
                         db.commit()
                         ok += 1
+                        processing_status["processed"] = ok + ng
                     except Exception as e:
                         w.process_status = "failed"
                         db.commit()
                         ng += 1
+                        processing_status["processed"] = ok + ng
                         ydh.input_shelf_num()
                         time.sleep(1)
-    
+                
+                processing_status["running"] = False
                 return {"code": 200, "msg": f"处理完成 成功:{ok} 失败:{ng}"}
     
             except Exception as e:
+                processing_status["running"] = False
                 return {"code": 500, "msg": f"执行异常：{str(e)}"}
     
         except Exception as e:
+            processing_status["running"] = False
             return {"code": 500, "msg": f"系统异常：{str(e)}"}
     
-    @app.post("/retry-failed-waybills")
-    async def retry_failed_waybills(db: Session = Depends(get_db)):
+    @app.post("/process-waybills")
+    async def process_waybills(request: Request, db: Session = Depends(get_db), user=Depends(require_login)):
+        """执行处理待处理运单"""
         try:
             if dt.date.today() > EXPIRE_DATE:
                 return {"code": 403, "msg": "已过期"}
+
+            # 检查是否已在处理中
+            if processing_status["running"]:
+                return {"code": 400, "msg": "已有任务正在处理中，请先停止当前任务"}
+
+            # 获取当前登录用户的手机号
+            phone = request.session.get("phone", "")
+
+            # 获取时间范围参数
+            data = await request.json()
+            start_date = data.get("start_date")
+            end_date = data.get("end_date")
+
+            # 构建查询条件 - 只查询当前用户的数据
+            query = db.query(WaybillProcess).filter(
+                WaybillProcess.process_status == "pending",
+                WaybillProcess.phone == phone
+            )
+
+            if start_date:
+                query = query.filter(WaybillProcess.create_time >= start_date)
+            if end_date:
+                # 结束日期加一天，包含当天所有数据
+                from datetime import timedelta
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+                end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+                query = query.filter(WaybillProcess.create_time < end_date_next)
+
+            # 读取配置
+            config = get_config()
+            max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
+            
+            # 限制最大条数
+            items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            
+            if not items:
+                return {"code": 200, "msg": "暂无待处理运单号"}
+            
+            # 初始化状态
+            processing_status["running"] = True
+            processing_status["processed"] = 0
+            processing_status["total"] = len(items)
     
-            items = db.query(WaybillProcess).filter(WaybillProcess.process_status == "failed").all()
+            driver = None
+            try:
+                driver = get_reusable_driver()
+                ydh = YdhPage(driver)
+                ydh.open_ydh_page()
+                ydh.input_shelf_num()
+    
+                ok = 0
+                ng = 0
+    
+                for w in items:
+                    try:
+                        w.process_status = "processing"
+                        db.commit()
+    
+                        ydh.process_single_ydh(w.waybill_no)
+    
+                        w.process_status = "completed"
+                        db.commit()
+                        ok += 1
+                        processing_status["processed"] = ok + ng
+                    except Exception as e:
+                        w.process_status = "failed"
+                        db.commit()
+                        ng += 1
+                        processing_status["processed"] = ok + ng
+                        ydh.input_shelf_num()
+                        time.sleep(1)
+                
+                processing_status["running"] = False
+                return {"code": 200, "msg": f"处理完成 成功:{ok} 失败:{ng}"}
+    
+            except Exception as e:
+                processing_status["running"] = False
+                return {"code": 500, "msg": f"执行异常：{str(e)}"}
+    
+        except Exception as e:
+            processing_status["running"] = False
+            return {"code": 500, "msg": f"系统异常：{str(e)}"}
+    
+    @app.post("/retry-failed-waybills")
+    async def retry_failed_waybills(request: Request, db: Session = Depends(get_db), user=Depends(require_login)):
+        try:
+            if dt.date.today() > EXPIRE_DATE:
+                return {"code": 403, "msg": "已过期"}
+
+            # 检查是否已在处理中
+            if processing_status["running"]:
+                return {"code": 400, "msg": "已有任务正在处理中，请先停止当前任务"}
+
+            # 获取当前登录用户的手机号
+            phone = request.session.get("phone", "")
+
+            # 获取时间范围参数
+            data = await request.json()
+            start_date = data.get("start_date")
+            end_date = data.get("end_date")
+
+            # 构建查询条件 - 只查询当前用户的数据
+            query = db.query(WaybillProcess).filter(
+                WaybillProcess.process_status == "failed",
+                WaybillProcess.phone == phone
+            )
+
+            if start_date:
+                query = query.filter(WaybillProcess.create_time >= start_date)
+            if end_date:
+                # 结束日期加一天，包含当天所有数据
+                from datetime import timedelta
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+                end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+                query = query.filter(WaybillProcess.create_time < end_date_next)
+
+            # 读取配置
+            config = get_config()
+            max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
+            
+            # 限制最大条数
+            items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            
             if not items:
                 return {"code": 200, "msg": "暂无失败数据"}
+            
+            # 初始化状态
+            processing_status["running"] = True
+            processing_status["processed"] = 0
+            processing_status["total"] = len(items)
     
             driver = None
             try:
@@ -241,28 +501,73 @@ try:
                         w.process_status = "completed"
                         db.commit()
                         ok += 1
+                        processing_status["processed"] = ok + ng
                     except Exception as e:
                         w.process_status = "failed"
                         db.commit()
                         ng += 1
+                        processing_status["processed"] = ok + ng
                         ydh.input_shelf_num()
                         time.sleep(1)
-    
+                
+                processing_status["running"] = False
                 return {"code": 200, "msg": f"重试完成 成功:{ok} 失败:{ng}"}
     
             except Exception as e:
+                processing_status["running"] = False
                 return {"code": 500, "msg": f"重试异常：{str(e)}"}
     
         except Exception as e:
+            processing_status["running"] = False
             return {"code": 500, "msg": f"系统异常：{str(e)}"}
     
-    @app.get("/export-completed")
-    async def export_completed(db: Session = Depends(get_db)):
-        try:
-            items = db.query(WaybillProcess).filter(
-                WaybillProcess.process_status == "completed"
-            ).order_by(WaybillProcess.update_time.desc()).all()
+    @app.get("/processing-status")
+    async def get_processing_status():
+        """获取当前处理状态"""
+        return {
+            "code": 200,
+            "data": {
+                "running": processing_status["running"],
+                "processed": processing_status["processed"],
+                "total": processing_status["total"],
+                "progress": f"{processing_status['processed']}/{processing_status['total']}" if processing_status["total"] > 0 else "0/0"
+            }
+        }
     
+    @app.get("/export-completed")
+    async def export_completed(
+        request: Request,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
+        db: Session = Depends(get_db),
+        user=Depends(require_login)
+    ):
+        try:
+            # 获取当前登录用户的手机号
+            phone = request.session.get("phone", "")
+
+            # 构建查询条件 - 只查询当前用户的数据
+            query = db.query(WaybillProcess).filter(
+                WaybillProcess.process_status == "completed",
+                WaybillProcess.phone == phone
+            )
+
+            if start_date:
+                query = query.filter(WaybillProcess.create_time >= start_date)
+            if end_date:
+                # 结束日期加一天，包含当天所有数据
+                from datetime import timedelta
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+                end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+                query = query.filter(WaybillProcess.create_time < end_date_next)
+
+            # 读取配置
+            config = get_config()
+            max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
+
+            # 限制最大条数
+            items = query.order_by(WaybillProcess.create_time.desc()).limit(max_batch_size).all()
+
             if not items:
                 return {"code": 200, "msg": "暂无成功数据"}
     
@@ -294,12 +599,39 @@ try:
             return {"code": 500, "msg": f"导出异常：{str(e)}"}
     
     @app.get("/export-failed")
-    async def export_failed(db: Session = Depends(get_db)):
+    async def export_failed(
+        request: Request,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
+        db: Session = Depends(get_db),
+        user=Depends(require_login)
+    ):
         try:
-            items = db.query(WaybillProcess).filter(
-                WaybillProcess.process_status == "failed"
-            ).order_by(WaybillProcess.update_time.desc()).all()
-    
+            # 获取当前登录用户的手机号
+            phone = request.session.get("phone", "")
+
+            # 构建查询条件 - 只查询当前用户的数据
+            query = db.query(WaybillProcess).filter(
+                WaybillProcess.process_status == "failed",
+                WaybillProcess.phone == phone
+            )
+
+            if start_date:
+                query = query.filter(WaybillProcess.create_time >= start_date)
+            if end_date:
+                # 结束日期加一天，包含当天所有数据
+                from datetime import timedelta
+                end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+                end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+                query = query.filter(WaybillProcess.create_time < end_date_next)
+
+            # 读取配置
+            config = get_config()
+            max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
+
+            # 限制最大条数
+            items = query.order_by(WaybillProcess.create_time.desc()).limit(max_batch_size).all()
+
             if not items:
                 return {"code": 200, "msg": "暂无失败数据"}
     
@@ -339,6 +671,30 @@ except Exception as e:
     log_startup("=" * 50)
     raise
 
+def kill_port_process(port):
+    """杀掉占用指定端口的进程"""
+    try:
+        import subprocess
+        # 使用PowerShell查找并关闭占用端口的进程
+        result = subprocess.run(
+            ['powershell', '-Command',
+             f"$conn = Get-NetTCPConnection -LocalPort {port} -ErrorAction SilentlyContinue; "
+             f"if ($conn) {{ "
+             f"  $proc = Get-Process -Id $conn.OwningProcess -ErrorAction SilentlyContinue; "
+             f"  if ($proc -and $proc.ProcessName -ne 'Idle') {{ "
+             f"    Stop-Process -Id $conn.OwningProcess -Force; "
+             f"    Write-Host \"已关闭占用端口 {port} 的进程: $($proc.ProcessName) (PID: $($conn.OwningProcess))\"; "
+             f"  }}"
+             f"}}"],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.stdout.strip():
+            log_startup(result.stdout.strip())
+        return True
+    except Exception as e:
+        log_startup(f"关闭端口进程失败: {str(e)}")
+        return False
+
 if __name__ == "__main__":
     try:
         log_startup("正在启动服务...")
@@ -357,8 +713,18 @@ if __name__ == "__main__":
         config = ConfigParser()
         config.read(config_path, encoding="utf-8")
         port = int(config.get("SERVER", "port", fallback=8000))
+        max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
         
         log_startup(f"服务端口: {port}")
+        log_startup(f"批量处理大小: {max_batch_size}")
+        
+        # 先杀掉占用该端口的进程
+        log_startup(f"正在检查端口 {port} 占用情况...")
+        kill_port_process(port)
+        
+        # 等待一下确保端口释放
+        time.sleep(1)
+        
         log_startup("正在启动 uvicorn...")
         
         # 检查端口是否被占用
