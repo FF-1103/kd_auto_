@@ -54,4 +54,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     icon=None,
+    onefile=True,  # 启用单文件模式，将资源嵌入exe
 )

@@ -15,11 +15,11 @@ from configparser import ConfigParser
 # 原代码：from utils.log_utils import get_logger  → 删掉这行
 
 def read_config(section, key):
-    """读取config.ini配置（适配打包后的路径）"""
+    """读取config.ini配置（适配onefile打包后的路径）"""
     config = ConfigParser()
     if getattr(sys, 'frozen', False):
-        # 打包后：exe所在目录
-        base_dir = os.path.dirname(sys.executable)
+        # PyInstaller onefile模式：资源在临时目录_sys.MEIPASS
+        base_dir = sys._MEIPASS
     else:
         # 开发环境：项目根目录
         base_dir = os.path.dirname(os.path.dirname(__file__))

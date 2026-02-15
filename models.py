@@ -18,14 +18,31 @@ from passlib.context import CryptContext
 def read_config(section, key):
     """读取config.ini配置（适配打包后的路径）"""
     config = ConfigParser()
-    if getattr(sys, 'frozen', False):
-        # 打包后：exe所在目录
+    if hasattr(sys, '_MEIPASS'):
+        # PyInstaller onefile 模式：资源在临时解压目录
+        base_dir = sys._MEIPASS
+    elif getattr(sys, 'frozen', False):
+        # 其他打包模式：exe所在目录
         base_dir = os.path.dirname(sys.executable)
     else:
         # 开发环境：当前文件所在目录
         base_dir = os.path.dirname(__file__)
     config_path = os.path.join(base_dir, "config", "config.ini")
-    config.read(config_path, encoding="utf-8")
+
+    # 调试信息
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"配置文件不存在: {config_path}")
+
+    files_read = config.read(config_path, encoding="utf-8")
+    if not files_read:
+        raise ValueError(f"无法读取配置文件: {config_path}")
+
+    if not config.has_section(section):
+        raise ValueError(f"配置文件缺少 [{section}] 部分。可用部分: {list(config.sections())}")
+
+    if not config.has_option(section, key):
+        raise ValueError(f"配置 [{section}] 缺少 {key} 选项")
+
     return config.get(section, key)
 
 

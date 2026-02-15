@@ -124,12 +124,18 @@ try:
             raise HTTPException(status_code=401, detail="请先登录")
 
 
-    # 根据是否打包设置模板目录
-    if getattr(sys, 'frozen', False):
-        template_dir = os.path.join(os.path.dirname(sys.executable), "templates")
-    else:
-        template_dir = "templates"
+# 资源路径处理函数（兼容开发环境和 PyInstaller 打包环境）
+    def resource_path(relative_path):
+        """获取资源文件的绝对路径"""
+        if hasattr(sys, '_MEIPASS'):
+            # PyInstaller 打包后的临时目录
+            return os.path.join(sys._MEIPASS, relative_path)
+        else:
+            # 正常开发环境
+            return os.path.join(os.path.dirname(__file__), relative_path)
 
+    # 设置模板目录
+    template_dir = resource_path("templates")
     log_startup(f"模板目录: {template_dir}")
     log_startup(f"模板目录存在: {os.path.exists(template_dir)}")
 
@@ -139,15 +145,10 @@ try:
     EXPIRE_DATE = dt.date(2026, 3, 15)
 
 
-    # 全局配置读取函数
+# 全局配置读取函数
     def get_config():
         """读取配置文件"""
-        if getattr(sys, 'frozen', False):
-            base_path = os.path.dirname(sys.executable)
-            config_path = os.path.join(base_path, "config", "config.ini")
-        else:
-            base_path = os.path.dirname(__file__)
-            config_path = os.path.join(base_path, "config", "config.ini")
+        config_path = resource_path(os.path.join("config", "config.ini"))
 
         config = ConfigParser()
         config.read(config_path, encoding="utf-8")
@@ -262,9 +263,7 @@ try:
 
     # 获取模板文件路径
     def get_template_path(filename):
-        if getattr(sys, 'frozen', False):
-            return os.path.join(os.path.dirname(sys.executable), "templates", filename)
-        return os.path.join("templates", filename)
+        return resource_path(os.path.join("templates", filename))
 
 
     @app.get("/download-template")
@@ -695,18 +694,14 @@ if __name__ == "__main__":
         log_startup("正在启动服务...")
 
         # 读取配置
-        if getattr(sys, 'frozen', False):
-            base_path = os.path.dirname(sys.executable)
-            config_path = os.path.join(base_path, "config", "config.ini")
-        else:
-            base_path = os.path.dirname(__file__)
-            config_path = os.path.join(base_path, "config", "config.ini")
+        config_path = resource_path(os.path.join("config", "config.ini"))
 
         log_startup(f"配置文件路径: {config_path}")
         log_startup(f"配置文件存在: {os.path.exists(config_path)}")
 
         config = ConfigParser()
         config.read(config_path, encoding="utf-8")
+
         port = int(config.get("SERVER", "port", fallback=8000))
         max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
 
