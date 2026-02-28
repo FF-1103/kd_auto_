@@ -71,7 +71,8 @@ class User(Base):
     phone = Column(String(20), nullable=False, unique=True, index=True)
     password_hash = Column(String(255), nullable=False)
     nickname = Column(String(50), default='')
-    is_active = Column(String(1), default='1')  # '1'启用 '0'禁用
+    is_active = Column(String(1), default='1')
+    expire_date = Column(DateTime, nullable=True)
     create_time = Column(DateTime, nullable=False, default=func.now())
     update_time = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
 

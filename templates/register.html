@@ -167,6 +167,10 @@
                     <label for="registerNickname">昵称（可选）</label>
                     <input type="text" id="registerNickname" placeholder="请输入昵称">
                 </div>
+                <div class="form-group">
+                    <label for="expireDate">失效时间（可选）</label>
+                    <input type="date" id="expireDate" placeholder="请选择失效时间">
+                </div>
                 <button type="submit" class="btn btn-primary" id="registerBtn">注册</button>
             </form>
 
@@ -208,6 +212,7 @@
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('registerConfirmPassword').value;
             const nickname = document.getElementById('registerNickname').value.trim();
+            const expireDate = document.getElementById('expireDate').value;
 
             if (!phone || !password || !confirmPassword) {
                 showMessage('请填写完整信息', 'error');
@@ -235,7 +240,7 @@
                 const res = await fetch('/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ phone, password, nickname })
+                    body: JSON.stringify({ phone, password, nickname, expire_date: expireDate })
                 });
                 const data = await res.json();
 

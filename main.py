@@ -221,11 +221,11 @@ try:
             phone = data.get("phone", "").strip()
             password = data.get("password", "")
             nickname = data.get("nickname", "").strip()
+            expire_date_str = data.get("expire_date", "")
 
             if not phone or not password:
                 return {"code": 400, "msg": "请填写完整信息"}
 
-            # 验证手机号格式
             import re
             if not re.match(r'^1[3-9]\d{9}$', phone):
                 return {"code": 400, "msg": "请输入正确的手机号"}
@@ -233,17 +233,23 @@ try:
             if len(password) < 6:
                 return {"code": 400, "msg": "密码至少6位"}
 
-            # 检查手机号是否已注册
             existing = db.query(User).filter(User.phone == phone).first()
             if existing:
                 return {"code": 400, "msg": "该手机号已注册"}
 
-            # 创建新用户
+            expire_date = None
+            if expire_date_str:
+                try:
+                    expire_date = datetime.strptime(expire_date_str, "%Y-%m-%d")
+                except ValueError:
+                    pass
+
             new_user = User(
                 phone=phone,
                 password_hash=get_password_hash(password),
                 nickname=nickname,
-                is_active='1'
+                is_active='1',
+                expire_date=expire_date
             )
             db.add(new_user)
             db.commit()
@@ -347,7 +353,7 @@ try:
         """执行处理待处理运单"""
         try:
             if dt.date.today() > EXPIRE_DATE:
-                return {"code": 403, "msg": "已过期"}
+                return {"code": 403, "msg": "系统已过期"}
 
             # 检查是否已在处理中
             if processing_status["running"]:
@@ -355,6 +361,12 @@ try:
 
             # 获取当前登录用户的手机号
             phone = request.session.get("phone", "")
+
+            # 检查用户失效时间
+            current_user = db.query(User).filter(User.phone == phone).first()
+            if current_user and current_user.expire_date:
+                if datetime.now() > current_user.expire_date:
+                    return {"code": 403, "msg": "账号已过期"}
 
             # 获取时间范围参数
             data = await request.json()
@@ -439,7 +451,7 @@ try:
     async def retry_failed_waybills(request: Request, db: Session = Depends(get_db), user=Depends(require_login)):
         try:
             if dt.date.today() > EXPIRE_DATE:
-                return {"code": 403, "msg": "已过期"}
+                return {"code": 403, "msg": "系统已过期"}
 
             # 检查是否已在处理中
             if processing_status["running"]:
@@ -447,6 +459,12 @@ try:
 
             # 获取当前登录用户的手机号
             phone = request.session.get("phone", "")
+
+            # 检查用户失效时间
+            current_user = db.query(User).filter(User.phone == phone).first()
+            if current_user and current_user.expire_date:
+                if datetime.now() > current_user.expire_date:
+                    return {"code": 403, "msg": "账号已过期"}
 
             # 获取时间范围参数
             data = await request.json()
