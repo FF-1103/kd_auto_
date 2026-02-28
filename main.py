@@ -261,6 +261,19 @@ try:
         return RedirectResponse(url="/login", status_code=302)
 
 
+    @app.get("/register", response_class=HTMLResponse)
+    async def register_page(request: Request):
+        """注册页面"""
+        try:
+            # 如果已登录，跳转到首页
+            if request.session.get("user_id"):
+                return RedirectResponse(url="/", status_code=302)
+            return templates.TemplateResponse("register.html", {"request": request})
+        except Exception as e:
+            log_startup(f"注册页面渲染错误: {str(e)}")
+            raise
+
+
     # 获取模板文件路径
     def get_template_path(filename):
         return resource_path(os.path.join("templates", filename))
@@ -349,6 +362,7 @@ try:
             end_date = data.get("end_date")
 
             # 构建查询条件 - 只查询当前用户的数据
+            query_start_time = time.time()
             query = db.query(WaybillProcess).filter(
                 WaybillProcess.process_status == "pending",
                 WaybillProcess.phone == phone
@@ -369,6 +383,8 @@ try:
 
             # 限制最大条数
             items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            query_elapsed = time.time() - query_start_time
+            log_startup(f"[执行处理] 数据库查询耗时: {query_elapsed:.3f}秒, 记录数: {len(items)}")
 
             if not items:
                 return {"code": 200, "msg": "暂无待处理运单号"}
@@ -438,6 +454,7 @@ try:
             end_date = data.get("end_date")
 
             # 构建查询条件 - 只查询当前用户的数据
+            query_start_time = time.time()
             query = db.query(WaybillProcess).filter(
                 WaybillProcess.process_status == "failed",
                 WaybillProcess.phone == phone
@@ -458,6 +475,8 @@ try:
 
             # 限制最大条数
             items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            query_elapsed = time.time() - query_start_time
+            log_startup(f"[失败重试] 数据库查询耗时: {query_elapsed:.3f}秒, 记录数: {len(items)}")
 
             if not items:
                 return {"code": 200, "msg": "暂无失败数据"}
@@ -537,6 +556,7 @@ try:
             phone = request.session.get("phone", "")
 
             # 构建查询条件 - 只查询当前用户的数据
+            query_start_time = time.time()
             query = db.query(WaybillProcess).filter(
                 WaybillProcess.process_status == "completed",
                 WaybillProcess.phone == phone
@@ -557,6 +577,8 @@ try:
 
             # 限制最大条数
             items = query.order_by(WaybillProcess.create_time.desc()).limit(max_batch_size).all()
+            query_elapsed = time.time() - query_start_time
+            log_startup(f"[导出成功数据] 数据库查询耗时: {query_elapsed:.3f}秒, 记录数: {len(items)}")
 
             if not items:
                 return {"code": 200, "msg": "暂无成功数据"}
@@ -602,6 +624,7 @@ try:
             phone = request.session.get("phone", "")
 
             # 构建查询条件 - 只查询当前用户的数据
+            query_start_time = time.time()
             query = db.query(WaybillProcess).filter(
                 WaybillProcess.process_status == "failed",
                 WaybillProcess.phone == phone
@@ -622,6 +645,8 @@ try:
 
             # 限制最大条数
             items = query.order_by(WaybillProcess.create_time.desc()).limit(max_batch_size).all()
+            query_elapsed = time.time() - query_start_time
+            log_startup(f"[导出失败数据] 数据库查询耗时: {query_elapsed:.3f}秒, 记录数: {len(items)}")
 
             if not items:
                 return {"code": 200, "msg": "暂无失败数据"}

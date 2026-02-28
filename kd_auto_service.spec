@@ -23,6 +23,7 @@ a = Analysis(
         'pymysql',
         'passlib.handlers.bcrypt',
         'bcrypt',
+        'itsdangerous',
     ],
     hookspath=[],
     hooksconfig={},
@@ -46,7 +47,7 @@ exe = EXE(
     strip=False,
     upx=True,
     upx_exclude=[],
-    runtime_tmpdir=None,
+    runtime_tmpdir=None,  # 使用系统默认临时目录
     console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
@@ -54,5 +55,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     icon=None,
-    onefile=True,  # 启用单文件模式，将资源嵌入exe
+    onefile=True,
 )

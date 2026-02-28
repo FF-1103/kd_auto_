@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>运单号处理系统 - 登录</title>
+    <title>运单号处理系统 - 注册</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -130,29 +130,50 @@
             font-size: 14px;
             color: #718096;
         }
+        .toggle-link a {
+            color: #667eea;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-header">
-            <h1>运单号处理系统</h1>
-            <p>请登录以继续</p>
+            <h1>用户注册</h1>
+            <p>创建账号以使用系统</p>
         </div>
         <div class="login-body">
             <div id="message" class="message"></div>
             
-            <!-- 登录表单 -->
-            <form id="loginForm">
+            <form id="registerForm">
                 <div class="form-group">
-                    <label for="loginPhone">手机号</label>
-                    <input type="text" id="loginPhone" placeholder="请输入手机号" maxlength="11">
+                    <label for="registerPhone">手机号</label>
+                    <input type="text" id="registerPhone" placeholder="请输入手机号" maxlength="11">
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">密码</label>
-                    <input type="password" id="loginPassword" placeholder="请输入密码">
+                    <label for="registerPassword">密码</label>
+                    <input type="password" id="registerPassword" placeholder="请输入密码（至少6位）">
                 </div>
-                <button type="submit" class="btn btn-primary" id="loginBtn">登录</button>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">确认密码</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="请再次输入密码">
+                </div>
+                <div class="form-group">
+                    <label for="registerNickname">昵称（可选）</label>
+                    <input type="text" id="registerNickname" placeholder="请输入昵称">
+                </div>
+                <button type="submit" class="btn btn-primary" id="registerBtn">注册</button>
             </form>
+
+            <div class="toggle-link">
+                <span>已有账号？</span>
+                <a href="/login">立即登录</a>
+            </div>
         </div>
     </div>
 
@@ -161,10 +182,6 @@
             const el = document.getElementById('message');
             el.textContent = msg;
             el.className = 'message ' + type;
-        }
-
-        function hideMessage() {
-            document.getElementById('message').className = 'message';
         }
 
         function setLoading(btnId, text) {
@@ -184,16 +201,16 @@
             return reg.test(phone);
         }
 
-        // 登录表单提交
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            hideMessage();
 
-            const phone = document.getElementById('loginPhone').value.trim();
-            const password = document.getElementById('loginPassword').value;
+            const phone = document.getElementById('registerPhone').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const nickname = document.getElementById('registerNickname').value.trim();
 
-            if (!phone || !password) {
-                showMessage('请输入手机号和密码', 'error');
+            if (!phone || !password || !confirmPassword) {
+                showMessage('请填写完整信息', 'error');
                 return;
             }
 
@@ -202,26 +219,36 @@
                 return;
             }
 
-            setLoading('loginBtn', '登录中...');
+            if (password.length < 6) {
+                showMessage('密码至少6位', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('两次输入的密码不一致', 'error');
+                return;
+            }
+
+            setLoading('registerBtn', '注册中...');
 
             try {
-                const res = await fetch('/login', {
+                const res = await fetch('/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ phone, password })
+                    body: JSON.stringify({ phone, password, nickname })
                 });
                 const data = await res.json();
 
                 if (data.code === 200) {
-                    showMessage('登录成功，正在跳转...', 'success');
-                    setTimeout(() => window.location.href = '/', 500);
+                    showMessage('注册成功，正在跳转到登录页...', 'success');
+                    setTimeout(() => window.location.href = '/login', 1500);
                 } else {
                     showMessage(data.msg, 'error');
-                    resetBtn('loginBtn', '登录');
+                    resetBtn('registerBtn', '注册');
                 }
             } catch (e) {
-                showMessage('登录失败：' + e.message, 'error');
-                resetBtn('loginBtn', '登录');
+                showMessage('注册失败：' + e.message, 'error');
+                resetBtn('registerBtn', '注册');
             }
         });
     </script>
