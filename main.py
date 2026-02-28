@@ -522,11 +522,14 @@ try:
 
             driver = None
             try:
+                log_startup("[执行处理] 获取复用浏览器实例")
                 driver = get_reusable_driver()
+                log_startup("[执行处理] 获取复用浏览器实例成功")
                 ydh = YdhPage(driver)
+                log_startup("[执行处理] 浏览器已就绪")
                 ydh.open_ydh_page()
-                time.sleep(5)
-
+                log_startup("[执行处理] 浏览器已打开")
+                time.sleep(1)
                 if phone != "17397935760":
                     from selenium.webdriver.common.by import By
                     try:
