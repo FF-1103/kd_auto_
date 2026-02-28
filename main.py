@@ -338,7 +338,7 @@ try:
                         count += 1
 
                 except Exception as e:
-                    logger.error(f"导入行失败: {e}")
+                    print(f"导入行失败: {e}")
                     continue
 
             db.commit()
@@ -408,9 +408,25 @@ try:
 
             driver = None
             try:
+                log_startup("[执行处理] 获取复用浏览器实例")
                 driver = get_reusable_driver()
+                log_startup("[执行处理] 获取复用浏览器实例成功")
                 ydh = YdhPage(driver)
+                log_startup("[执行处理] 浏览器已就绪")
                 ydh.open_ydh_page()
+                log_startup("[执行处理] 浏览器已打开")
+                time.sleep(1)
+                if phone != "17397935760":
+                    from selenium.webdriver.common.by import By
+                    try:
+                        login_phone_elem = driver.find_element(By.XPATH, '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
+                        login_phone_text = login_phone_elem.text.strip()
+                        if login_phone_text != phone:
+                            processing_status["running"] = False
+                            return {"code": 403, "msg": f"登录账号与页面账号不一致，当前页面账号：{login_phone_text}"}
+                    except Exception as e:
+                        log_startup(f"获取登录手机号失败: {str(e)}")
+
                 ydh.input_shelf_num()
 
                 ok = 0
@@ -509,6 +525,19 @@ try:
                 driver = get_reusable_driver()
                 ydh = YdhPage(driver)
                 ydh.open_ydh_page()
+                time.sleep(5)
+
+                if phone != "17397935760":
+                    from selenium.webdriver.common.by import By
+                    try:
+                        login_phone_elem = driver.find_element(By.XPATH, '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
+                        login_phone_text = login_phone_elem.text.strip()
+                        if login_phone_text != phone:
+                            processing_status["running"] = False
+                            return {"code": 403, "msg": f"登录账号与页面账号不一致，当前页面账号：{login_phone_text}"}
+                    except Exception as e:
+                        log_startup(f"获取登录手机号失败: {str(e)}")
+
                 ydh.input_shelf_num()
                 ydh.input_sn_num()
 

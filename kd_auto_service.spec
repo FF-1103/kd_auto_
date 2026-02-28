@@ -1,14 +1,23 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os
+
+def collect_templates():
+    templates_dir = 'templates'
+    result = []
+    for f in os.listdir(templates_dir):
+        if f != 'register.html':
+            result.append((os.path.join(templates_dir, f), 'templates'))
+    return result
+
 a = Analysis(
     ['main.py'],
     pathex=['D:\\PythonProject\\kd_auto'],
     binaries=[('chromedriver.exe', '.')],
     datas=[
         ('config', 'config'),
-        ('templates', 'templates'),
         ('reports', 'reports'),
-    ],
+    ] + collect_templates(),
     hiddenimports=[
         'selenium',
         'pandas',
