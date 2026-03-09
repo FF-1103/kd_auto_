@@ -82,16 +82,17 @@ class WaybillProcess(Base):
     __tablename__ = "waybill_process"
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    waybill_no = Column(String(50), nullable=False, unique=True)
+    waybill_no = Column(String(50), nullable=False)
     phone = Column(String(20), nullable=False, index=True)
     process_status = Column(Enum('pending', 'processing', 'completed', 'failed'),
                             nullable=False, default='pending')
     create_time = Column(DateTime, nullable=False, default=func.now())
-    update_time = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    update_time = Column(DateTime, nullable=True, onupdate=func.now())
     remark = Column(String(500), default='')
 
-    # 索引
+
     __table_args__ = (
+    # 索引        Index("idx_waybill_phone", "waybill_no", "phone", unique=True),
         Index("idx_status_create_time", "process_status", "create_time"),
         Index("idx_status_update_time", "process_status", "update_time"),
         Index("idx_phone_status", "phone", "process_status"),

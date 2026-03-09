@@ -87,11 +87,10 @@ class YdhPage(BasePage):
             ydh_elem.send_keys(ydh)
             time.sleep(0.2)
             logger.info("运单号输入完成")
-
+            time.sleep(1.5)
             mobile_elem = self.wait_element_clickable(self.MOBILE_INPUT)
             mobile_elem.clear()
             time.sleep(1)
-            mobile_elem.clear()
             if mobile_elem.get_attribute("value"):
                 mobile_elem.clear()
                 time.sleep(0.2)

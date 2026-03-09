@@ -102,6 +102,7 @@ try:
     from datetime import datetime
     from sqlalchemy.orm import Session
     from sqlalchemy.exc import IntegrityError
+    from datetime import datetime, timedelta
     from configparser import ConfigParser
     from typing import Optional
 
@@ -124,7 +125,7 @@ try:
             raise HTTPException(status_code=401, detail="请先登录")
 
 
-# 资源路径处理函数（兼容开发环境和 PyInstaller 打包环境）
+    # 资源路径处理函数（兼容开发环境和 PyInstaller 打包环境）
     def resource_path(relative_path):
         """获取资源文件的绝对路径"""
         if hasattr(sys, '_MEIPASS'):
@@ -133,6 +134,7 @@ try:
         else:
             # 正常开发环境
             return os.path.join(os.path.dirname(__file__), relative_path)
+
 
     # 设置模板目录
     template_dir = resource_path("templates")
@@ -145,7 +147,7 @@ try:
     EXPIRE_DATE = dt.date(2026, 3, 15)
 
 
-# 全局配置读取函数
+    # 全局配置读取函数
     def get_config():
         """读取配置文件"""
         config_path = resource_path(os.path.join("config", "config.ini"))
@@ -309,6 +311,7 @@ try:
 
             # 导入数据到数据库
             count = 0
+            update_count = 0
             for _, row in df.iterrows():
                 try:
                     # 获取运单号（支持多个常见列名）
@@ -327,7 +330,13 @@ try:
                         WaybillProcess.phone == phone
                     ).first()
 
-                    if not existing:
+                    if existing:
+                        # 更新状态为待处理
+                        if existing.process_status != "pending":
+                            existing.process_status = "pending"
+                            db.commit()
+                            update_count += 1
+                    else:
                         # 创建新记录
                         new_record = WaybillProcess(
                             waybill_no=waybill_no,
@@ -342,7 +351,11 @@ try:
                     continue
 
             db.commit()
-            return {"code": 200, "msg": f"导入完成，共导入 {count} 条运单号"}
+
+            msg = f"导入完成，新增 {count} 条"
+            if update_count > 0:
+                msg += f"，更新 {update_count} 条"
+            return {"code": 200, "msg": msg}
 
         except Exception as e:
             return {"code": 500, "msg": f"导入异常：{str(e)}"}
@@ -375,26 +388,30 @@ try:
 
             # 构建查询条件 - 只查询当前用户的数据
             query_start_time = time.time()
+            from sqlalchemy import or_
+            
             query = db.query(WaybillProcess).filter(
                 WaybillProcess.process_status == "pending",
                 WaybillProcess.phone == phone
             )
 
             if start_date:
-                query = query.filter(WaybillProcess.create_time >= start_date)
+                query = query.filter(or_(
+                    WaybillProcess.create_time >= start_date,
+                    WaybillProcess.update_time >= start_date
+                ))
             if end_date:
-                # 结束日期加一天，包含当天所有数据
-                from datetime import timedelta
                 end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
                 end_date_next = (end_date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
-                query = query.filter(WaybillProcess.create_time < end_date_next)
+                query = query.filter(or_(
+                    WaybillProcess.create_time < end_date_next,
+                    WaybillProcess.update_time < end_date_next
+                ))
 
-            # 读取配置
             config = get_config()
             max_batch_size = int(config.get("PROCESS", "max_batch_size", fallback=10000))
 
-            # 限制最大条数
-            items = query.order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
+            items = query.distinct().order_by(WaybillProcess.create_time.asc()).limit(max_batch_size).all()
             query_elapsed = time.time() - query_start_time
             log_startup(f"[执行处理] 数据库查询耗时: {query_elapsed:.3f}秒, 记录数: {len(items)}")
 
@@ -419,7 +436,8 @@ try:
                 if phone != "17397935760":
                     from selenium.webdriver.common.by import By
                     try:
-                        login_phone_elem = driver.find_element(By.XPATH, '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
+                        login_phone_elem = driver.find_element(By.XPATH,
+                                                               '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
                         login_phone_text = login_phone_elem.text.strip()
                         if login_phone_text != phone:
                             processing_status["running"] = False
@@ -435,16 +453,19 @@ try:
                 for w in items:
                     try:
                         w.process_status = "processing"
+                        w.update_time = datetime.now()
                         db.commit()
 
                         ydh.process_single_ydh(w.waybill_no)
 
                         w.process_status = "completed"
+                        w.update_time = datetime.now()
                         db.commit()
                         ok += 1
                         processing_status["processed"] = ok + ng
                     except Exception as e:
                         w.process_status = "failed"
+                        w.update_time = datetime.now()
                         db.commit()
                         ng += 1
                         processing_status["processed"] = ok + ng
@@ -533,7 +554,8 @@ try:
                 if phone != "17397935760":
                     from selenium.webdriver.common.by import By
                     try:
-                        login_phone_elem = driver.find_element(By.XPATH, '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
+                        login_phone_elem = driver.find_element(By.XPATH,
+                                                               '//*[@id="app"]/section/section/header/div/div[2]/div[3]/div/span')
                         login_phone_text = login_phone_elem.text.strip()
                         if login_phone_text != phone:
                             processing_status["running"] = False
@@ -550,16 +572,19 @@ try:
                 for w in items:
                     try:
                         w.process_status = "processing"
+                        w.update_time = datetime.now()
                         db.commit()
 
                         ydh.process_single_ydh(w.waybill_no)
 
                         w.process_status = "completed"
+                        w.update_time = datetime.now()
                         db.commit()
                         ok += 1
                         processing_status["processed"] = ok + ng
                     except Exception as e:
                         w.process_status = "failed"
+                        w.update_time = datetime.now()
                         db.commit()
                         ng += 1
                         processing_status["processed"] = ok + ng
