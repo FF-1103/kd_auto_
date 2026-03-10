@@ -575,7 +575,7 @@ try:
                         w.update_time = datetime.now()
                         db.commit()
 
-                        ydh.process_single_ydh(w.waybill_no)
+                        ydh.process_single_ydh_failed(w.waybill_no)
 
                         w.process_status = "completed"
                         w.update_time = datetime.now()
